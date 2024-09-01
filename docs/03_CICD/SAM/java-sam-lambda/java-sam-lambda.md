@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 2-1. 02_AWS SAM을 이용해 Lambda로 JAVA 어플리케이션 배포하기
-nav_order: 21
-permalink: docs/02_Tech/03_CICD/SAM/java-sam-lambda
-parent: 03_CICD
-grand_parent: Tech
+title: Lambda로 JAVA 어플리케이션 배포
+nav_order: 1
+permalink: docs/03_CICD/SAM/java-sam-lambda/java-sam-lambda
+parent: SAM
+grand_parent: CICD
 ---
 
 # AWS SAM을 이용해 Lambda로 JAVA 어플리케이션 배포하기
@@ -35,7 +35,7 @@ AWS SAM과 AWS CodeBuild 를 이용해 Java Application을 Lambda에 배포하�
 
 ---
 
-## 1. AWS SAM과 AWS Lambda 소개
+# AWS SAM과 AWS Lambda 소개
 
 **AWS SAM**
 
@@ -51,11 +51,11 @@ AWS Lambda는 코드를 서버 없이 실행할 수 있게 해주는 서비스�
 
 관련 문서 : [AWS Lambda이란 무엇인가요?](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/welcome.html)
 
-## 2. 서버리스 어플리케이션 예제
+# 서버리스 어플리케이션 예제
 
 다음은 Lambda에서 사용되는 Java 함수 코드입니다
 
-### 2.1 function code
+## function code
 
 ```java
 package example;
@@ -121,7 +121,7 @@ public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIG
 }
 ```
 
-### 2.2 function code 상세 설명
+## function code 상세 설명
 
 이 AWS Lambda 함수는 API Gateway로부터 오는 HTTP 요청을 처리합니다. 
 Handler 클래스에 정의된 handleRequest 메소드를 통해 이벤트를 수신하고 처리 결과를 반환합니다.
@@ -156,11 +156,11 @@ Handler 클래스에 정의된 handleRequest 메소드를 통해 이벤트를 �
 
 `getPageContents` 메소드: 외부 URL에서 데이터를 가져오는 기능을 수행합니다. 이 메소드는 https://checkip.amazonaws.com에서 IP 주소를 조회하며, 이 정보를 응답에 포함시킵니다.
 
-## 3. AWS SAM을 이용한 Java Application 빌드 및 배포
+# AWS SAM을 이용한 Java Application 빌드 및 배포
 
 AWS SAM은 Java 언어를 사용할 때 Maven이나 Gradle과 같은 표준 Java 빌드 도구를 자동으로 활용하여 프로젝트를 배포합니다.
 
-### 3.1 template code
+## template code
 
 다음은 SAM 에서 Lambda 함수를 배포 할 때 사용하는 template.yaml 파일입니다.
 
@@ -191,7 +191,7 @@ Resources:
       CodeUri: function/
       SnapStart:
         ApplyOn: PublishedVersions
-      Role: arn:aws:iam::539666729110:role/kimkm-lambda-role
+      Role: arn:aws:iam:::role/role
       Layers:
         - !Ref JavaLayer
     Metadata:
@@ -230,7 +230,7 @@ AWS SAM CLI는 `sam build` 명령어를 실행할 때, 자동으로 template.yam
 
 이러한 빌드 과정은 template.yaml 파일내 있는 `BuildMethod: java21` 옵션을 통해 AWS SAM이 자동으로 처리합니다.
 
-#### 3.2.2 Makefile을 이용한 커스텀 빌드 설정
+### Makefile을 이용한 커스텀 빌드 설정
 
 Java 애플리케이션의 경우, 특히 AWS Lambda에 배포될 때, 종종 추가적인 빌드 설정이 필요합니다. Makefile을 통해 사용자가 직접 빌드 과정을 정의할 수 있습니다.
 
@@ -248,17 +248,17 @@ build-JavaFunction:
 
 lib 폴더는 Lambda에서 지정한 Java 용 라이브러리를 저장하는데 사용하는 디렉토리 명칭입니다. 폴더 명을 바꾸면 안됩니다.
 
-#### 3.3 Lambda Layer를 통한 의존성 관리
+### Lambda Layer를 통한 의존성 관리
 
 `AWS::Serverless::LayerVersion`선언은 Lambda 함수가 실행 시 필요한 의존성을 제공합니다. 이는 Lambda 환경에서 공통 의존성을 제공하여 각 함수의 패키지 크기를 줄이는 데 사용됩니다.
 
-#### 3.4 pom.xml
+### pom.xml
 
 Java 빌드 과정에서 모든 소스 코드와 의존성은 하나의 jar 파일 안에 포함되어 Lambda에 배포됩니다.
 
 AWS Lambda에서 Maven을 이용하여 Java 함수를 구현할 때, pom.xml 파일은 Java 프로젝트의 구성을 정의하고, 필요한 라이브러리들을 관리합니다.
 
-##### 3.4.1 function/pom.xml
+### function/pom.xml
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -302,7 +302,7 @@ AWS Lambda에서 Maven을 이용하여 Java 함수를 구현할 때, pom.xml 파
 </project>
 ```
 
-##### 3.4.3 layer/pom.xml
+### layer/pom.xml
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -389,7 +389,7 @@ AWS Lambda에서 Maven을 이용하여 Java 함수를 구현할 때, pom.xml 파
 </project>
 ```
 
-##### 3.4.4 pom.xml 주요 부분 상세 설명
+### pom.xml 주요 부분 상세 설명
 
 1. provided scope
 
@@ -427,7 +427,7 @@ AWS Lambda에서 Maven을 이용하여 Java 함수를 구현할 때, pom.xml 파
 
 * **역할**: Maven 프로젝트에서 하나의 실행 가능한 jar 파일을 생성하는 데 사용됩니다. 람다 배포시 단일 실행 파일로 배포해야합니다.
 
-## 4. samconfig.toml
+# samconfig.toml
 
 SAM 프로젝트를 배포할 때 사용되는 설정 정보를 포함하는 파일입니다. 
 
@@ -448,11 +448,11 @@ capabilities = "CAPABILITY_IAM"
 no_beta_features = true
 ```
 
-## 5. CodeBuild 이용한 CI/CD 구성
+# CodeBuild 이용한 CI/CD 구성
 
 codebuild를 이용해 SAM CLI를 통해 Lambda를 배포할 수 있습니다.
 
-### 5.1 buildspec.yml
+## buildspec.yml
 
 ```yaml
 version: 0.2
@@ -474,7 +474,7 @@ phases:
       - sam deploy --no-progressbar --no-fail-on-empty-changeset
 ```
 
-## 5. Lambda 배포 확인
+# Lambda 배포 확인
 
 codebuild project 수행 확인
 
