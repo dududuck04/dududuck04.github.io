@@ -901,7 +901,7 @@ export default async function Page() {
 
 `/app/ui/dashboard/revenue-chart.tsx`
 
-```typescript jsx
+```typescript
 import { generateYAxis } from '@/app/lib/utils';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
@@ -957,7 +957,7 @@ export default async function RevenueChart() { // Make component async, remove t
 
 `/dashboard/(overview)/page.tsx`
 
-```typescript jsx
+```typescript
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { inter } from '@/app/ui/fonts';
@@ -982,7 +982,7 @@ export default async function Page() {
 
 `/app/ui/dashboard/cards.tsx`
 
-```typescript jsx
+```typescript
 // ...
 import { fetchCardData } from '@/app/lib/data';
  
@@ -1012,6 +1012,7 @@ export default async function CardWrapper() {
 ```
 
 이 방식을 적용하고 페이지를 새로고침하면, 모든 카드가 동시에 로드되는 것을 확인 할 수 있습니다.
+
 routing group을 통해 여러 컴포넌트를 동시에 로드할 수 있습니다.
 
 ### `<Suspense>` 사용 전략
@@ -1033,7 +1034,7 @@ routing group을 통해 여러 컴포넌트를 동시에 로드할 수 있습니
 `/invoices page`에서 `serch` 와 `pagination` 기능을 추가해볼 수 있습니다.
 
 `/app/dashboard/invoices/page.tsx`
-```typescript jsx
+```typescript
 import Pagination from '@/app/ui/invoices/pagination';
 import Search from '@/app/ui/search';
 import Table from '@/app/ui/invoices/table';
@@ -1106,7 +1107,7 @@ Next.js 의 클라이언트 훅을 사용하여 검색 기능을 구현할 수 �
 
 `/app/ui/search.tsx`
 
-```typescript jsx
+```typescript
 'use client';
  
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
@@ -1156,7 +1157,8 @@ export default function Search({ placeholder }: { placeholder: string }) {
 `'next/navigation'`에서 `useSearchParams` 훅을 임포트하고, `defaultValue`에 할당합니다.
 
 `/app/ui/search.tsx`
-```typescript jsx
+
+```typescript
 'use client';
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
@@ -1174,7 +1176,7 @@ export default function Search() {
 
 `handleSearch` 함수 내부에서 앞서 생성한 searchParmas를 인자로 받는 새로운 `URLSearchParams` 인스턴스를 생성합니다. 
 
-```typescript jsx
+```typescript
 'use client';
  
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
@@ -1197,7 +1199,7 @@ export default function Search() {
 
 아래 코드는 사용자의 입력이 있다면 query 파라미터를 설정하고 없으면 삭제합니다.
 
-```typescript jsx
+```typescript
 'use client';
  
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
@@ -1221,7 +1223,8 @@ export default function Search() {
 `useRouter`와 `usePathname`을 임포트하고, `useRouter()`의 `replace` 메서드를 사용하여 URL을 업데이트합니다.
 
 `/app/ui/search.tsx`
-```typescript jsx
+
+```typescript
 'use client';
  
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
@@ -1244,11 +1247,10 @@ export default function Search() {
 }
 ```
 
-이렇게 하면 사용자가 검색 바에 입력할 때마다 ${pathname}?${params.toString()}가 URL을 동적으로 업데이트합니다.
+이렇게 하면 사용자가 검색 바에 입력할 때마다 `${pathname}?${params.toString()}`가 URL을 동적으로 업데이트합니다.
 
-예를 들어 사용자가 "Lee"를 검색하면 /dashboard/invoices?query=lee와 같이 URL이 업데이트됩니다.
+예를 들어 사용자가 "Lee"를 검색하면 `/dashboard/invoices?query=lee`와 같이 URL이 업데이트됩니다. 이 구현을 통해, 검색 기능이 URL에 반영되게 됩니다.
 
-이 구현을 통해, 검색 기능이 URL에 반영되게 됩니다.
 또한, Next.js의 클라이언트 측 네비게이션을 활용하여 페이지를 새로고침하지 않고도 URL을 업데이트할 수 있습니다.
 
 ### URL과 입력 필드 동기화 하기
@@ -1263,7 +1265,7 @@ export default function Search() {
 
 `/app/ui/search.tsx`
 
-```typescript jsx
+```typescript
 <input
   className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
   placeholder={placeholder}
@@ -1284,7 +1286,7 @@ export default function Search() {
 
 **URL 쿼리 파라미터와 `defaultValue`**
 
-```typescript jsx
+```typescript
 defaultValue={searchParams.get('query')?.toString()}
 ```
 이 코드는 URL의 쿼리 파라미터가 있다면 그 값으로 입력 필드의 초기값을 설정하는 코드입니다.
@@ -1295,8 +1297,9 @@ defaultValue={searchParams.get('query')?.toString()}
 
 사용자의 컴색 쿼리에 따라 테이블 컴포넌트를 업데이트 할 수 있습니다.
 
-/dashboard/invoices/page.tsx
-```typescript jsx
+`/dashboard/invoices/page.tsx`
+
+```typescript
 import Pagination from '@/app/ui/invoices/pagination';
 import Search from '@/app/ui/search';
 import Table from '@/app/ui/invoices/table';
@@ -1336,9 +1339,9 @@ export default async function Page({
 }
 ```
 
-`<Table>` 컴포넌트 내에서 (app/ui/invoices/table.tsx) `query` 및 `currentPage` prop을 사용하여 검색조건에 맞는 invoice를 fetching 하는 로직을 확인할 수 있습니다.
+`<Table>` 컴포넌트 내에서 `(app/ui/invoices/table.tsx)` `query` 및 `currentPage` `prop`을 사용하여 검색조건에 맞는 `invoice`를 fetching 하는 로직을 확인할 수 있습니다.
 
-```typescript jsx
+```typescript
 // 필요한 import들...
 
 export default async function InvoicesTable({
@@ -1360,7 +1363,7 @@ export default async function InvoicesTable({
 
 반면에, 서버에서 데이터를 패칭하는 `<Table>` 컴포넌트는 페이지 컴포넌트로부터 `searchParams` prop을 전달받아 사용했습니다. 
 
-클라이언트에서 파라미터를 읽어야 할 때는 useSearchParams() 훅을 사용하고, 서버에서 처리할 때는 prop을 통해 필요한 파라미터를 컴포넌트로 전달하는 것이 좋습니다.
+클라이언트에서 파라미터를 읽어야 할 때는 `useSearchParams()` 훅을 사용하고, 서버에서 처리할 때는 prop을 통해 필요한 파라미터를 컴포넌트로 전달하는 것이 좋습니다.
 
 ## debouncing
 
@@ -1372,14 +1375,15 @@ export default async function InvoicesTable({
 
 **디바운싱 작동 방식**
 
-트리거 이벤트: 디바운싱되어야 할 이벤트(예: 검색 상자에서의 키 입력)가 발생하면 타이머가 시작됩니다.
-대기: 타이머가 만료되기 전에 새 이벤트가 발생하면 타이머가 리셋됩니다.
-실행: 타이머가 카운트다운의 끝에 도달하면 디바운스된 함수가 실행됩니다.
+* 트리거 이벤트: 디바운싱되어야 할 이벤트(예: 검색 상자에서의 키 입력)가 발생하면 타이머가 시작됩니다.
+* 대기: 타이머가 만료되기 전에 새 이벤트가 발생하면 타이머가 리셋됩니다.
+* 실행: 타이머가 카운트다운의 끝에 도달하면 디바운스된 함수가 실행됩니다.
 
 `use-debounce` 라이브러리 활용
 
-/app/ui/search.tsx
-```typescript jsx
+`/app/ui/search.tsx`
+
+```typescript
 // ...
 import { useDebouncedCallback } from 'use-debounce';
  
@@ -1404,7 +1408,8 @@ const handleSearch = useDebouncedCallback((term) => {
 사용자가 페이지를 넘겨가며 모든 결과 쿼리를 확인할 수 있습니다.
 
 `/dashboard/invoices/page.tsx` 서버에서 데이터를 fetching 합니다.
-```typescript jsx
+
+```typescript
 // ...
 import { fetchInvoicesPages } from '@/app/lib/data';
  
@@ -1428,7 +1433,8 @@ export default async function Page({
 ```
 
 `<pagination/>` 컴포넌트에 totalPages prop을 전달합니다.
-```typescript jsx
+
+```typescript
 // ...
  
 export default async function Page({
@@ -1470,7 +1476,7 @@ export default async function Page({
 
 새 페이지 번호를 설정하기 위해 `URLSearchParams`를 사용하고, `pathname`을 사용하여 URL 문자열을 생성합니다.
 
-```typescript jsx
+```typescript
 'use client';
  
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
@@ -1488,11 +1494,11 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 }
 ```
 
-페이지 번호 리셋 
+**페이지 번호 리셋**
 
 `<Search>` 컴포넌트의 handleSearch 함수를 업데이트 합니다.
 
-```typescript jsx
+```typescript
 'use client';
 import { useDebouncedCallback } from 'use-debounce';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
