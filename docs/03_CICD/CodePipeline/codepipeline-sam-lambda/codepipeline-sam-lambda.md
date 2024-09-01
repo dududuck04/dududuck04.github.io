@@ -151,19 +151,17 @@ no_beta_features = true
 
 모든 SAM 명령에 적용되는 기본 파라미터를 지정합니다.
 
-* stack_name - AWS CloudFormation 스택 이름을 정의합니다.
+* **stack_name** - AWS CloudFormation 스택 이름을 정의합니다.
+* **version**: 파일 형식의 버전을 명시합니다.
 
-template.yaml 파일에 정의된 AWS 서버리스 애플리케이션의 빌드 작업을 수행합니다.
+### `[default.deploy.parameters]`
 
-version: 파일 형식의 버전을 명시합니다.
-[default.global.parameters]: 모든 SAM 명령에 적용되는 전역 설정을 정의합니다.
-stack_name: 기본적으로 사용될 AWS CloudFormation 스택의 이름을 설정합니다.
-배포 설정 [default.deploy.parameters]
-stack_name: 배포할 때 사용될 CloudFormation 스택의 이름입니다.
-s3_bucket: SAM 패키지를 업로드할 Amazon S3 버킷의 이름입니다.
-s3_prefix: S3 버킷 내에서 SAM 패키지를 저장할 경로(프리픽스)입니다.
-region: 배포 대상 AWS 리전을 지정합니다.
-confirm_changeset: 배포 전 변경 세트를 확인할지 여부를 결정합니다. (true 설정 시 확인 절차 필요)
-capabilities: CloudFormation 스택 생성 시 필요한 권한을 명시합니다. (CAPABILITY_IAM은 IAM 리소스 생성 권한을 부여)
-빌드 설정 [default.build.parameters]
-no_beta_features: 베타 기능의 사용 여부를 결정합니다. (true로 설정 시 베타 기능 비활성화)
+* **s3_bucket**: SAM 패키지를 업로드할 Amazon S3 버킷의 이름입니다.
+* **s3_prefix**: S3 버킷 내에서 SAM 패키지를 저장할 경로(프리픽스)입니다.
+* **region**: 배포 대상 AWS 리전을 지정합니다.
+* **confirm_changeset**: 배포 전 변경 세트를 확인할지 여부를 결정합니다. (true 설정 시 확인 절차 필요)
+* **capabilities**: CloudFormation 스택 생성 시 필요한 권한을 명시합니다. (CAPABILITY_IAM은 IAM 리소스 생성 권한을 부여)
+
+### `[default.build.parameters]`
+
+* **no_beta_features**: 베타 기능의 사용 여부를 결정합니다. (true로 설정 시 베타 기능 비활성화)
