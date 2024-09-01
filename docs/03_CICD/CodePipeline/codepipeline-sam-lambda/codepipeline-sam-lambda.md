@@ -1,6 +1,6 @@
 ---
 layout: default
-title: AWS SAM으로 Lambda 배포하기
+title: AWS SAM을 통한 Lambda 배포
 nav_order: 1
 permalink: docs/03_CICD/CodePipeline/codepipeline-sam-lambda/codepipeline-sam-lambda
 parent: CodePipeline
