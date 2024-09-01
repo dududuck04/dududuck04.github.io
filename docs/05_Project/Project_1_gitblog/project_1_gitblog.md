@@ -2,7 +2,7 @@
 layout: default
 title: 깃 블로그 만들기
 nav_order: 1
-permalink: docs/03_Project/Project_1_gitblog
+permalink: docs/05_Project/Project_1_gitblog/project_1_gitblog
 parent: Project
 ---
 
@@ -40,12 +40,12 @@ Tech 경험을 공유하기 위해 블로그를 작성하기로 하였습니다.
 
 사용된 리소스: Git, Docker
 
-## Git Theme 선정
+# Git Theme 선정
 
-### 선택한 Theme: Just the Docs
+## 선택한 Theme: Just the Docs
 - Just the Docs: [GitHub Repository](https://github.com/just-the-docs/just-the-docs.git)
 
-### 추천 테마
+## 추천 테마
 1. [Flexible Jekyll](https://github.com/artemsheludko/flexible-jekyll.git)
 2. [Just the Docs](https://github.com/just-the-docs/just-the-docs.git)
 3. [Kasper](https://github.com/rosario/kasper.git)
@@ -53,9 +53,9 @@ Tech 경험을 공유하기 위해 블로그를 작성하기로 하였습니다.
 5. [Clean Blog](https://github.com/StartBootstrap/startbootstrap-clean-blog-jekyll.git)
 6. [Type on Strap](https://github.com/sylhare/Type-on-Strap.git)
 
-## 테마 사용법 (Just the Docs 기준)
+# 테마 사용법 (Just the Docs 기준)
 
-### Just the Docs 템플릿 사용하기
+## Just the Docs 템플릿 사용하기
 
 1. **레포지토리 생성**
     - Just the Docs [GitHub Repository](https://github.com/just-the-docs/just-the-docs.git)의 README.md의 ["use the template"](https://github.com/new?template_name=just-the-docs-template&template_owner=just-the-docs) 링크를 클릭합니다.
