@@ -860,6 +860,8 @@ route group을 통해 특정 페이지에만 적용되게 변경할 수 있습�
 ![img-17.png](img-17.png)
 
 * **route group의 이점**
+* 
+![imt-12.png](imt-12.png)
 
 URL 경로 구조에 영향을 주지 않고 파일을 조직할 수 있습니다. () 를 사용해 새 폴더를 생성하면 그 이름은 URL 경로에 포함되지 않습니다.
 
@@ -876,6 +878,7 @@ URL 경로 구조에 영향을 주지 않고 파일을 조직할 수 있습니�
 
 그리고 <Suspense> 컴포넌트로 <RevenueChard /> 를 감싸줍니다.
 로딩되는 동안 표시될 <RevenueChartSkeleton> 컴포넌트도 넣어줍니다.
+
 
 ```typescript
 import { Card } from '@/app/ui/dashboard/cards';
