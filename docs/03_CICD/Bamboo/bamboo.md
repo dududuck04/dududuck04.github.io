@@ -3,8 +3,7 @@ layout: default
 title: Bamboo
 nav_order: 10
 permalink: docs/03_CICD/Bamboo/bamboo
-parent: 03_CICD
-grand_parent: Tech
+parent: CICD
 ---
 
 # Bamboo
@@ -13,7 +12,7 @@ Bamboo는 Atlassian에 의해 개발된 CI/CD 도구입니다.
 
 {: .no_toc }
 
-## 목차
+## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
