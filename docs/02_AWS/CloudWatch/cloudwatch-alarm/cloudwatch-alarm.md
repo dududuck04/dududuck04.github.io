@@ -7,7 +7,7 @@ parent: CloudWatch
 grand_parent: AWS
 ---
 
-# CodeDeploy ECS Blue/Green 배포시 Install 단계 Timeout 시간 제한 조정 방법 (Feat. CloudWatch Alarm)
+# AWS CodeDeploy 배포 중 장애 예방 방법 (Feat. CloudWatch Alarm)
 {: .no_toc }
 
 ## 목차

@@ -1,10 +1,9 @@
 ---
 layout: default
-title: 5. Elastic Cache
+title: Elastic Cache
 nav_order: 50
-permalink: docs/02_Tech/02_AWS/ElasticCache
-parent: 02_AWS
-grand_parent: Tech
+permalink: docs/02_AWS/ElasticCache
+parent: AWS
 ---
 
 # Elastic Cache
@@ -26,12 +25,12 @@ grand_parent: Tech
 
 ## 시작하기 전
 
-## 1. 개요
+# 개요
 
 Amazon ElastiCache는 Memcached와 Redis 프로토콜을 지원하는 완전 관리형 인메모리 캐싱 서비스입니다. 
 이 서비스는 실시간 사용 사례를 지원하며, 읽기가 많은 애플리케이션의 대량 작업 부하를 처리하거나 계산 처리가 방대한 작업 부하를 개선하는 데 사용됩니다.
 
-## 2. 동작 방식
+# 동작 방식
 
 ![img-1.png](img-1.png)
 
@@ -55,7 +54,7 @@ Amazon ElastiCache는 Memcached와 Redis 프로토콜을 지원하는 완전 관
 - **Integrate with other AWS Services**
   - ElastiCache는 AWS의 여러 다른 서비스와 통합될 수 있습니다.
 
-## 3. 적용 사례
+# 적용 사례
 
 읽기 중심의 애플리케이션 부하 감소: 소셜 네트워킹, 게임, 미디어 공유 등 읽기가 많은 작업에 적합합니다.
 고도의 데이터 구조 지원: Redis를 이용해 데이터베이스 계층을 효과적으로 확장할 수 있으며, 복잡한 데이터 작업을 더 효율적으로 수행할 수 있습니다.
@@ -68,15 +67,15 @@ Amazon ElastiCache는 Memcached와 Redis 프로토콜을 지원하는 완전 관
 데이터 캐싱: 사용자가 자주 액세스하는 데이터를 빠르게 제공하기 위해 캐시에 저장합니다.
 세션 스토어, 게임 리더보드, 스트리밍 및 분석: 이러한 사용 사례는 내구성을 요구하지 않으므로 ElastiCache를 주 데이터 저장소로 활용할 수 있습니다.
 
-## 4. Memcached와 Redis 비교
+# Memcached와 Redis 비교
 
-## 5. 핵심 개념
+# 핵심 개념
 노드, 샤드, 클러스터: ElastiCache 배포 시 기본 구성 요소, 샤드(키 공간의 서브셋 및 레플리카 포함), 클러스터(여러 샤드로 구성)에 대한 설명
 
-## 5. 고려 사항
+# 고려 사항
 
 캐시의 크기 결정, 데이터 일관성 유지, 비용 관리 등이 포함됩니다.
 
-## 6. 적용 방안
+# 적용 방안
 
 서버리스 환경에서의 자동 스케일링, 캐시 노드의 세밀한 조정, 보안 설정 및 모니터링 방법 등이 포함됩니다.
