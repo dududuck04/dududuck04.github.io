@@ -7,13 +7,11 @@ permalink: docs/02_Tech/AWS
 parent: Tech
 ---
 
-# Color Utilities
+# AWS
 {: .no_toc }
 
 ## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
-   {:toc}
-
----
+{:toc}

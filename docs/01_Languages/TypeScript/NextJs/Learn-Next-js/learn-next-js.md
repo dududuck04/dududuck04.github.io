@@ -2,7 +2,7 @@
 layout: default
 title: Learn Next.js
 nav_order: 10
-permalink: docs/01_Language/TypeScript/AwsCloudScape/nextjs/learn-next-js
+permalink: docs/01_Language/TypeScript/NextJs/Learn-Next-js
 parent: TypeScript
 grand_parent: Languages
 ---

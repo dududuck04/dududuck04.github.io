@@ -6,7 +6,7 @@ has_children: true
 permalink: docs/02_Tech
 ---
 
-# Color Utilities
+# Tech
 {: .no_toc }
 
 ## Table of contents
@@ -14,5 +14,3 @@ permalink: docs/02_Tech
 
 1. TOC
 {:toc}
-
----

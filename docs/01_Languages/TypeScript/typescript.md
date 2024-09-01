@@ -3,7 +3,7 @@ layout: default
 title: TypeScript
 nav_order: 10
 has_children: true
-permalink: docs/01_languages/TypeScript
+permalink: docs/01_Languages/TypeScript
 parent: Languages
 ---
 
@@ -15,6 +15,4 @@ parent: Languages
 
 1. TOC
 {:toc}
-
----
 
