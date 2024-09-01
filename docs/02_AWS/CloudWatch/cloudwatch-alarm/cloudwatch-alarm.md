@@ -3,8 +3,8 @@ layout: default
 title: Cloud Watch Alarm
 nav_order: 10
 permalink: docs/02_AWS/CloudWatch/cloudwatch-alarm/cloudwatch-alarm
-parent: AWS
-grand_parent: CloudWatch
+parent: CloudWatch
+grand_parent: AWS
 ---
 
 # CodeDeploy ECS Blue/Green 배포시 Install 단계 Timeout 시간 제한 조정 방법 (Feat. CloudWatch Alarm)
