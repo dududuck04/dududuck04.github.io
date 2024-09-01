@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Next.js Start
+title: Learn Next.js
 nav_order: 10
 permalink: docs/01_Language/TypeScript/AwsCloudScape/nextjs/learn-next-js
 parent: TypeScript
@@ -1140,7 +1140,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
 
 
 **invoce 채널에 입력 요소가 생긴 모습**
-![img-19.png](img-19.png)ㅇ
+![img-19.png](img-19.png)
 
 **콘솔 로그 확인하기**
 ![img-20.png](img-20.png)

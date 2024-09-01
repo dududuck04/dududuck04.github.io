@@ -14,5 +14,3 @@ permalink: docs/01_Languages
 
 1. TOC
 {:toc}
-
----

@@ -4,11 +4,6 @@ layout: home
 background: /assets/images/background.jpeg
 ---
 
-<!-- Page Header Image -->
-<header>
-  <img src="{{ page.background | prepend: site.baseurl }}" alt="Header Image" style="width: 100%; height: auto;">
-</header>
-
 ### PROFESSIONAL SUMMARY
 - Experienced DevOps engineer with demonstrated success in cost-effective migration of existing services  to cloud environment, designing and deploying application in DevSecOps environment.
 - Knowledge of full stack development and modular design with IaC Tool.
@@ -36,7 +31,10 @@ AWS Resource Module Architecture with AWS CDK Tool
 Deployment of AWS Resource with Terraform Tool
 
 English: ★★★★☆
-Megazone Global Tech Meeting Live Translator 2024
+Corporation Global Tech Meeting Live Translator 2024
 
 ### COMMENT
 - Highly-motivated and passionate DevOps Engineer interested in diverse implementation of the latest technology solution
+
+### CONTACT
+dududuck04@gmail.com
