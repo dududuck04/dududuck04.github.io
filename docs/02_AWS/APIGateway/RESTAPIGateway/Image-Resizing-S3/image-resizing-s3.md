@@ -1,6 +1,6 @@
 ---
 layout: default
-title: S3, Lambda, API Gateway를 활용한 실시간 이미지 리사이징 솔루션
+title: 실시간 이미지 리사이징 솔루션
 nav_order: 10
 permalink: docs/02_AWS/APIGateway/RESTAPIGateway/Image-Resizing-S3/image-resizing-s3
 parent: API Gateway
@@ -43,17 +43,17 @@ grand_parent: AWS
 
 ---
 
-## 1. S3 버킷 생성 및 설정
+# S3 버킷 생성 및 설정
 
 우선, S3 버킷을 생성하고 공용 액세스 및 정적 웹사이트 호스팅을 설정해야 합니다. 정적 웹사이트 호스팅을 사용하려면 S3 버킷에 저장된 리소스에 대한 공용 접근을 허용해야 합니다.
 
-### 1.1 공용 접근 설정
+## 공용 접근 설정
   * 생성된 버킷을 선택하고 `Permissions` 탭으로 이동 후 `Block all public access` 옵션을 해지하여 공용 접근을 허용합니다.
   * `Block Public Access` 를 해제하면 공용 접근을 허용할 수 있는 상태가 되며 아래 정책 추가를 통해 명시적으로 접근 권한을 부여할 수 있게 됩니다.
 
 ![img-2.png](img-2.png)
 
-### 1.2 버킷 정책 추가
+## 버킷 정책 추가
   * Bucket Policy 를 추가하여 버킷 내 객체들에 대한 접근을 허용합니다.
 
 ```json
@@ -70,12 +70,12 @@ grand_parent: AWS
 }
 ```
 
-### 1.3 정적 웹사이트 호스팅 설정
+##  정적 웹사이트 호스팅 설정
   * `Properties` 탭에서 Static website hosting 을 설정할 수 있습니다.
 
 ![img-3.png](img-3.png)
 
-### 1.4 리디렉션 규칙 설정
+##  리디렉션 규칙 설정
   * 정적 웹사이트 호스팅 섹션에서 리디렉션 규칙을 설정합니다. 유저가 요청한 이미지가 없을 경우 API Gateway URL로 리디렉션 하도록 설정합니다.
 
 ```json
@@ -94,7 +94,7 @@ grand_parent: AWS
 ]
 ```
 
-### 1.5 리디렉션 규칙 적용
+##  리디렉션 규칙 적용
   * 없는 이미지를 요청할 때 API Gateway가 이미지 리사이징을 동적으로 수행하고, 새로 생성된 이미지를 반환할 수 있습니다.
 
 * S3 버킷 호스팅 URL을 통해 이미지를 호출하는 방법 예시
@@ -129,15 +129,15 @@ http://duck's bucket.s3-website.ap-northeast-2.amazonaws.com/300x300/blue_marble
 https://.execute-api.ap-northeast-2.amazonaws.com/default/resize?key=300x300/blue_marble.jpg
 ```
 
-### 1.6 리디렉션 후 변화
+## 리디렉션 후 변화
 
 * **호스트 이름 변경**: 버킷 호스트에서 API Gateway 호스트네임으로 변경됩니다.
 * **프로토콜 변경**: HTTP에서 HTTPS로 변경됩니다.
 * **경로 수정**: 요청 경로의 접두사 300x300/이 default/resize?key=로 교체되어 API Gateway가 요청을 처리할 수 있도록 합니다.
 
-## 2. Lambda와 API Gateway 생성 및 설정
+# Lambda와 API Gateway 생성 및 설정
 
-### 2.1 생성된 Lambda 함수의 Resource-based policy 설정
+## 생성된 Lambda 함수의 Resource-based policy 설정
 
 * Lambda에 필요한 권한을 부여하기 위해 Resource-based policy를 설정해야합니다. 이 정책을 통해 특정 서비스나 계정이 Lambda 함수를 호출할 수 있도록 허용할 수 있습니다.
 
@@ -169,11 +169,11 @@ https://.execute-api.ap-northeast-2.amazonaws.com/default/resize?key=300x300/blu
 
 * `Principal`을 통해 `Action` 을 수행할 주체를 설정합니다.
 
-### 2.2 Lambda 함수 코드
+## Lambda 함수 코드
 
 * s3 버킷에서 이미지를 가져와서 리사이징한 후, 다시 S3 버킷에 업로드하는 역할을 합니다.
 
-### 2.3 Lambda 함수 코드 상세 설명
+## Lambda 함수 코드 상세 설명
 
 * **이미지 요청 처리**
   * 요청된 이미지 키를 파싱하여 리사이징할 해상도와 원본 이미지를 식별합니다.

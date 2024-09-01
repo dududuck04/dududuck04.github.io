@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 2. Amazon CloudFront
+title: CloudFront
 nav_order: 20
-permalink: docs/02_Tech/02_AWS/CloudFront
-parent: 02_AWS
-grand_parent: Tech
+has_children: true
+permalink: docs/02_AWS/CloudFront
+parent: AWS
 ---
 
 # CloudFront
@@ -16,25 +16,13 @@ grand_parent: Tech
 1. TOC
 {:toc}
 
----
-
-## 글을 쓴 배경
-
-
-## 글 요약
-
-
-## 시작하기 전
-
----
-
-## 1. CloudFront란?
+# CloudFront란?
 
 Amazon CloudFront는 .html, .css, .js 및 이미지 파일과 같은 정적 및 동적 웹 콘텐츠를 사용자에게 더 빠르게 배포하도록 지원하는 웹 서비스입니다.
 
 이 서비스는 엣지 로케이션이라는 데이터 센터의 전 세계 네트워크를 통해 콘텐츠를 제공합니다.
 
-## 2. CloudFront의 주요 기능
+# CloudFront의 주요 기능
 
 1. 글로벌 콘텐츠 배포
    * 전 세계에 분포된 엣지 로케이션을 통해 사용자에게 콘텐츠를 제공합니다.
@@ -43,7 +31,7 @@ Amazon CloudFront는 .html, .css, .js 및 이미지 파일과 같은 정적 및 
 3. 향상된 성능 및 신뢰성
    * 네트워크 간의 경유 횟수를 줄여 성능을 향상시키며, 파일의 사본을 전 세계 여러 엣지 로케이션에 캐시함으로써 안정성과 가용성을 높입니다.
 
-## 3. CloudFront의 작동 방식
+# CloudFront의 작동 방식
 
 1. 배포 생성
    * 배포를 통해 콘텐츠를 어디에서 전송할지, 어떻게 전송할지를 지정할 수 있습니다.
@@ -54,8 +42,7 @@ Amazon CloudFront는 .html, .css, .js 및 이미지 파일과 같은 정적 및 
 4. 요금 구조
    * 엣지 로케이션에서 전송되는 데이터와 HTTP , HTTPS 요청에 대해 요금을 부과합니다.
 
-## 4. Lambda@Edge 함수
+# Lambda@Edge 함수
 
 CloudFront 콘텐츠를 보호하기 위한 Authorization@Edge 솔루션
 사용자가 CloudFront 배포에 접근하기 전에 인증을 거치도록 할 수 있습니다.
-
