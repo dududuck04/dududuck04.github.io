@@ -1,17 +1,17 @@
 ---
 layout: default
-title: 2-1. TypeScript CDK로 재사용가능한 모듈 구조 작성하기 - Construct (4편)
-nav_order: 21
-permalink: docs/02_Tech/03_CICD/CDK/cdk-module-construct
-parent: 03_CICD
-grand_parent: Tech
+title: CDK로 모듈 구조 작성하기 (4편)
+nav_order: 4
+permalink: docs/03_CICD/CDK/cdk-module-construct/cdk-module-construct
+parent: CDK
+grand_parent: CICD
 ---
 
 # 재활용 할 수 있는 CDK 모듈 생성하기 - Construct 4편
 
 {: .no_toc }
 
-## 목차
+## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,18 +19,13 @@ grand_parent: Tech
 
 ---
 
-## 글을 쓴 배경
-
-
-## 글 요약
-
 ## 시작하기 전
 
 이 글을 읽기 전 [재활용 할 수 있는 CDK 모듈 생성하기](../cdk-module-app)을 우선 읽어주시길 바랍니다.
 
 ---
 
-## 1. 프로젝트 구조
+# 프로젝트 구조
 
 ```perl
 ├── README.md
@@ -104,7 +99,7 @@ grand_parent: Tech
 └── tsconfig.json
 ```
 
-## 2. Construct 란?
+# Construct 란?
 
 ![img-1.png](img-1.png)
 
@@ -112,11 +107,11 @@ AWS Cloud Development Kit (AWS CDK)의 요소인 Construct는 AWS 리소스를 �
 
 [construct hub](https://constructs.dev/packages/aws-cdk-lib/v/2.142.1?lang=typescript)을 통해 cdk resource를 쉽게 찾고 활용할 수 있습니다.
 
-## 3. Construct 사용법
+# Construct 사용법
 
 `Construct`는 AWS CDK 앱의 구성 요소로, 다음과 같은 방식으로 사용됩니다:
 
-### 3.1 Construct를 인스턴스화 하여 사용
+## Construct를 인스턴스화 하여 사용
 
 AWS CDK에서는 이미 정의된 Construct를 직접 인스턴스화하여 사용할 수 있습니다. 
 예를 들어, `s3.Bucket` 같은 `Construct`를 바로 인스턴스화하여 사용할 수 있습니다
@@ -139,7 +134,7 @@ const app = new cdk.App();
 new MyBucketStack(app, 'MyBucketStack');
 ```
 
-### 3.2 기존 Construct 조합하기
+## 기존 Construct 조합하기
 
 여러 Construct를 조합하여 더 복잡한 구성 요소를 만들 수 있습니다. 
 예를 들어, S3 버킷과 SNS Topic을 조합하여 특정 이벤트에 대한 알림을 설정할 수 있습니다.
@@ -165,13 +160,13 @@ const app = new cdk.App();
 new MyNotificationBucketStack(app, 'MyNotificationBucketStack');
 ```
 
-### 3.3 직접 construct 작성하기
+## 직접 construct 작성하기
 
 새 구문을 선언하려면 `Construct` 기본 클래스를 확장하는 클래스를 만들고, 초기화 할때 필요한 매개변수를 전달해 주면 됩니다. 
 
 다음은 Construct를 작성하고 배포하는 방법에 대한 예제입니다.
 
-### 3.4 CodeBuildSimplePattern Construct 예제
+## CodeBuildSimplePattern Construct 예제
 
 이 예제 클래스에서는 `Construct`를 확장하여 CodeCommit 리포지토리, IAM 역할, 정책, S3 버킷을 포함하는 `CodeBuildSimplePattern`을 정의합니다. 
 이를 통해 복잡한 워크로드를 하나의 커스텀 `Construct`로 구성하고 배포할 수 있습니다.
@@ -271,7 +266,7 @@ export class CodeBuildSimplePattern extends Construct {
 }
 ```
 
-#### 3.4.1 CodeBuildSimplePattern 클래스 코드 상세 설명
+### CodeBuildSimplePattern 클래스 코드 상세 설명
 
 **생성자**
 
@@ -291,6 +286,6 @@ constructor(scope: Construct, id: string, props: CodeBuildSimplePatternProps) {
 3. S3 버킷: CodeBuild에서 캐시 버킷으로 사용할 버킷을 조회하고 없으면 생성합니다.
 4. CodeBuild 프로젝트 생성: CodeCommit 리포지토리, IAM 역할, S3 버킷을 사용하여 CodeBuild 프로젝트를 생성하는 워크로드를 구성합니다.
 
-### 4. BaseConstruct 활용
+## BaseConstruct 활용
 
 `construct`도 stack과 마찬가지로 construct간의 공통된 속성을 적용하기 위해 BaseConstruct를 사용할 수 있습니다.

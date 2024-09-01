@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 2-1. TypeScript CDK로 재사용가능한 모듈 구조 작성하기 - Stack (3편)
-nav_order: 21
-permalink: docs/02_Tech/03_CICD/CDK/cdk-module-stack
-parent: 03_CICD
-grand_parent: Tech
+title: CDK로 모듈 구조 작성하기 (3편)
+nav_order: 3
+permalink: docs/03_CICD/CDK/cdk-module-stack/cdk-module-stack
+parent: CDK
+grand_parent: CICD
 ---
 
 # 재활용 할 수 있는 CDK 모듈 생성하기 - Stack 3편
@@ -24,16 +24,13 @@ grand_parent: Tech
 이 글은 AWS CDK를 사용하여 재사용 가능한 모듈 구조를 작성하는 방법을 설명하기 위해 작성되었습니다. 
 stack 배포, 및 사용법을 다룹니다.
 
-## 글 요약
-
-
 ## 시작하기 전
 
 이 글을 읽기 전 [재활용 할 수 있는 CDK 모듈 생성하기](../cdk-module-context)을 우선 읽어주시길 바랍니다.
 
 ---
 
-## 1. 프로젝트 구조
+# 프로젝트 구조
 
 ```perl
 ├── README.md
@@ -107,7 +104,7 @@ stack 배포, 및 사용법을 다룹니다.
 └── tsconfig.json
 ```
 
-## 2. Stack 이란
+# Stack 이란
 
 ![img-1.png](../cdk-module-construct/img-1.png)
 
@@ -116,12 +113,12 @@ AWS Cloud Development Kit (AWS CDK) 스택은 리소스를 정의하는 하나 �
 
 스택은 앱 내에서 정의되며, AWS CDK Stack 클래스를 사용하여 정의됩니다.
 
-## 3. 재사용 가능한 코드를 위한 인터페이스 Stack의 필요성
+# 재사용 가능한 코드를 위한 인터페이스 Stack의 필요성
 
 `cdk.Stack` 클래스를 직접 사용할 수도 있지만, 프로젝트 복잡해질수록 코드의 중복을 줄이고 일관성을 유지하는 것이 필요합니다.
 이러한 이유로 `lib/template/stack/base-stack.ts` 와 같은 재사용 가능한 베이스 스택을 정의하는 인터페이스를 도입하였습니다.
 
-### 3.1 base-stack.ts 코드
+## base-stack.ts 코드
 
 ```typescript
 import * as cdk from 'aws-cdk-lib';
@@ -217,7 +214,7 @@ export class BaseStack extends cdk.Stack implements ICommonHelper, ICommonGuardi
 }
 ```
 
-### 3.1.1 base-stack 기능 1 - 공통 설정 및 기능 중앙 집중화
+## base-stack 기능 1 - 공통 설정 및 기능 중앙 집중화
 
 앱 내의 여러 스택에서 공통적으로 사용되는 설정과 기능을 중앙에서 관리할 수 있습니다.  이를 통해 모든 스택이 일관된 설정을 가질 수 있도록 합니다.
 
@@ -235,7 +232,7 @@ export interface StackCommonProps extends cdk.StackProps {
 }
 ```
 
-### 3.1.2 base-stack 기능 2 - 재사용 가능한 헬퍼 메소드 제공
+## base-stack 기능 2 - 재사용 가능한 헬퍼 메소드 제공
 
 스택에서 자주 사용되는 기능을 헬퍼 메서드로 정의해 두면 각 스택에서 이를 재 사용할 수 있게 됩니다.
 자세한 메서드 구현은 `lib/template/common/common-helper.ts` 에 구현되어있습니다. 
@@ -260,7 +257,7 @@ export class BaseStack extends cdk.Stack implements ICommonHelper, ICommonGuardi
 }
 ```
 
-### 3.1.3 base-stack 기능 3 - 코드 가독성 및 유지보수 향상
+## base-stack 기능 3 - 코드 가독성 및 유지보수 향상
 
 공통된 로직을 baseStack에 정의함으로써 각 스택 파일이 간결해지게 됩니다. 아래는 실제 codebuild 배포 스택입니다.
 
@@ -292,11 +289,11 @@ export class CodeBuildSimplePatternStack extends base.BaseStack {
 }
 ```
 
-## 4. base-stack을 이용한 실제 스택 구현 코드 상세 설명 (CodeBuildSimplePatternStack)
+# base-stack을 이용한 실제 스택 구현 코드 상세 설명 (CodeBuildSimplePatternStack)
 
 CodeBuildSimplePatternStack 클래스는 BaseStack을 상속받아 AWS CodeBuild 프로젝트를 정의합니다.
 
-### 4.1 부모 객체 초기화
+## 부모 객체 초기화
 
 `CodeBuildSimplePatternStack` 클래스의 `constructor`에서 가장 먼저 부모 클래스(`BaseStack`)를 초기화합니다.
 
@@ -315,7 +312,7 @@ export class CodeBuildSimplePatternStack extends BaseStack {
 }
 ```
 
-### 4.2 BaseStack 클래스
+## BaseStack 클래스
 
 마찬가지로 BaseStack 클래스는 cdk.Stack 클래스를 상속받아 구현되었습니다. 
 
@@ -342,7 +339,7 @@ constructor(scope?: Construct, id?: string, props?: StackProps) {
 }
 ```
 
-### 4.3 CodeBuildSimplePattern 인스턴스 생성
+## CodeBuildSimplePattern 인스턴스 생성
 
 BaseStack 클래스는 `StackCommonProps` 인터페이스를 사용하여 공통 속성을 정의하고,
 정의된 속성을 이용해 `CodeBuildSimplePattern` 인스턴스를 만듭니다. 이 과정을 통해 각 스택은 일관된 설정을 가지게 됩니다.

@@ -1,17 +1,17 @@
 ---
 layout: default
-title: 2-1. TypeScript CDK로 재사용가능한 모듈 구조 작성하기 - pipeline (5편)
-nav_order: 21
-permalink: docs/02_Tech/03_CICD/CDK/cdk-module-pipeline-pattern
-parent: 03_CICD
-grand_parent: Tech
+title: CDK로 모듈 구조 작성하기 (5편)
+nav_order: 5
+permalink: docs/03_CICD/CDK/cdk-module-pipeline-pattern/cdk-module-pipeline-pattern
+parent: CDK
+grand_parent: CICD
 ---
 
 # 재활용 할 수 있는 CDK 모듈 생성하기 - pipeline 5편
 
 {: .no_toc }
 
-## 목차
+## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,19 +19,13 @@ grand_parent: Tech
 
 ---
 
-## 글을 쓴 배경
-
-
-## 글 요약
-
-
 ## 시작하기 전
 
 이 글을 읽기 전 [재활용 할 수 있는 CDK 모듈 생성하기](../cdk-module-app)을 우선 읽어주시길 바랍니다.
 
 ---
 
-## 1. 프로젝트 구조
+# 프로젝트 구조
 
 ```perl
 ├── README.md
@@ -105,7 +99,7 @@ grand_parent: Tech
 └── tsconfig.json
 ```
 
-## 2. CDK APP 이란?
+# CDK APP 이란?
 
 registerAction 함수는 Codepipeline 액션을 등록하는 역할
 

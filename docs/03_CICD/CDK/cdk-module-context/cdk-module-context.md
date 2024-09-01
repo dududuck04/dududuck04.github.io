@@ -1,17 +1,17 @@
 ---
 layout: default
-title: 2-1. TypeScript CDK로 재사용가능한 모듈 구조 작성하기 - App, Context (2편)
-nav_order: 21
-permalink: docs/02_Tech/03_CICD/CDK/cdk-module-context
-parent: 03_CICD
-grand_parent: Tech
+title: CDK로 모듈 구조 작성하기 (2편)
+nav_order: 2
+permalink: docs/03_CICD/CDK/cdk-module-context/cdk-module-context
+parent: CDK
+grand_parent: CICD
 ---
 
 # 재활용 할 수 있는 CDK 모듈 생성하기 - app, context 2편
 
 {: .no_toc }
 
-## 목차
+## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -34,7 +34,7 @@ CDK 앱의 초기화, bin 디렉토리의 역할, 컨텍스트 값의 개념과 
 
 ---
 
-## 1. 프로젝트 구조
+# 프로젝트 구조
 
 ```perl
 ├── README.md
@@ -108,7 +108,7 @@ CDK 앱의 초기화, bin 디렉토리의 역할, 컨텍스트 값의 개념과 
 └── tsconfig.json
 ```
 
-## 2. CDK APP 이란?
+# CDK APP 이란?
 
 ![img-1.png](img-1.png)
 
@@ -127,7 +127,7 @@ this.cdkApp = new cdk.App();
 
 이러한 트리구조에서 모든 구문이 서로의 범위 내에 정의되도록하여 구문간의 관계를 명확히 설정하고있습니다.
 
-## 2. CDK Context란?
+# CDK Context란?
 
 AWS CDK 앱에서 여러 스택과 리소스 간에 공통적으로 필요한 속성 값이나 메소드를 관리하는데 사용되는 클래스 입니다.
 
@@ -135,12 +135,12 @@ AWS CDK 앱에서 여러 스택과 리소스 간에 공통적으로 필요한 �
 
 그렇다면 이제 어떻게 app 과 context를 활용하는지 알아보겠습니다.
 
-## 3. bin 디렉토리와 app.ts 파일
+# bin 디렉토리와 app.ts 파일
 
 AWS CDK 프로젝트에서 `bin` 디렉토리는 애플리케이션의 진입점을 정의하는 파일들을 담고 있습니다.
 이 디렉토리에는 CDK 앱을 초기화하고 스택을 생성 및 구성하는 코드가 들어 있습니다.
 
-### 3.1 app.ts 파일의 역할
+## app.ts 파일의 역할
 
 - **앱 컨텍스트 초기화**: 커스텀 클래스인 `AppContext`를 사용하여 앱의 환경 정보를 초기화합니다.
   - `AppContext` 클래스의 인스턴스를 생성하여 앱의 환경 정보를 초기화합니다.
@@ -152,7 +152,7 @@ AWS CDK 프로젝트에서 `bin` 디렉토리는 애플리케이션의 진입점
   - `CodeBuildStack`과 `CodeDeployStack` 스택을 생성합니다.
   - 각 스택은 특정 AWS 리소스를 구성하며, `appContext`와 스택에서 사용될 config 정보를 인수로 전달받습니다.
 
-### 3.2 app.ts 파일 예제
+## app.ts 파일 예제
 
 ```typescript
 import { AppContext, AppContextError } from '../lib/app-context';
@@ -182,7 +182,7 @@ try {
 }
 ```
 
-### 3.3 AppContext 클래스와 컨텍스트 관리
+## AppContext 클래스와 컨텍스트 관리
 
 앞서 설명한대로 여러 스택 간의 공통적인 설정을 효과적으로 관리하는 것은 중요합니다. 이를 위해 AppContext 클래스와 이를 활용하는 방법에 대해 알아보겠습니다.
 
@@ -247,7 +247,7 @@ export class AppContext {
 }
 ```
 
-### 3.4 주요 메소드 설명
+## 주요 메소드 설명
 
 CDK 애플리케이션의 설정과 환경을 관리하기 위한 다양한 메소드들이 AppContext 클래스에 존재합니다.
 
@@ -302,7 +302,7 @@ export class AppContext {
 }
 ```
 
-### 3.4.1 createStackCommonProps() 메소드
+## createStackCommonProps() 메소드
 
 설정 파일들을 기반으로 `StackCommonProps` 객체를 생성하는 메소드 입니다.
 
@@ -328,7 +328,7 @@ private createStackCommonProps(appConfigFilePath: string): StackCommonProps{
 ```
 
 
-### 3.4.2 ready() 메소드
+## ready() 메소드
 
 이 메소드는 특정 조건을 확인하여 클래스의 준비 상태를 반환합니다.
 
@@ -341,7 +341,7 @@ public ready(): boolean {
 }
 ```
 
-### 3.4.3 findAppConfigFile(appConfigKey: string) 메소드
+## findAppConfigFile(appConfigKey: string) 메소드
 
 이 메소드는 설정 파일의 경로를 찾습니다.
 
@@ -395,7 +395,7 @@ private findAppConfigFile(appConfigKey: string): string {
 cdk deploy --context APP_CONFIG=path/to/config.json
 ```
 
-### 3.4.4 getProjectPrefix(appConfigKey: string) 메소드
+## getProjectPrefix(appConfigKey: string) 메소드
 
 프로젝트 접두사를 생성합니다.
 
@@ -416,7 +416,7 @@ public getProjectPrefix(CompanyCode: string, Environment: string, ServiceCode: s
 }
 ```
 
-### 3.4.5 applyProjectPrefixToStack(appConfig: any): void 메소드
+## applyProjectPrefixToStack(appConfig: any): void 메소드
 
 주어진 AppConfig 객체의 스택 리소스 이름에 프로젝트 접두사를 적용합니다.
 
@@ -438,7 +438,7 @@ private applyProjectPrefixToStack(appConfig: any): void {
 }
 ```
 
-### 3.4.5 loadAppConfigFile(filePath: string, contextArgs?: string[]): any 메소드
+## loadAppConfigFile(filePath: string, contextArgs?: string[]): any 메소드
 
 주어진 파일 경로에서 앱 구성 파일을 로드하고, 필요에 따라 컨텍스트 인자를 업데이트하며, 스택 이름에 프로젝트 접두사를 추가합니다.
 
@@ -465,7 +465,7 @@ private loadAppConfigFile(filePath: string, contextArgs?: string[]): any {
 }
 ```
 
-### 3.4.6 updateContextArgs(appConfig: any, contextArgs: string[]) 메소드
+## updateContextArgs(appConfig: any, contextArgs: string[]) 메소드
 
 주어진 컨텍스트 인자를 앱 구성에 업데이트합니다.
 
@@ -523,7 +523,7 @@ oldValue = jsonKeys.reduce((reducer: any, pointer: string) => reducer.hasOwnProp
 최종적으로 oldValue는 appConfig['Stack']['CodeDeploySimplePatternStack']['StackName']의 값을 가지게 됩니다.
 
 
-### 3.4.7 addPrefixIntoResourceName(appConfig: any, projectPrefix: string) 메소드
+## addPrefixIntoResourceName(appConfig: any, projectPrefix: string) 메소드
 
 주어진 앱 구성 객체의 스택 리소스 이름에 프로젝트 접두사를 추가합니다.
 
@@ -537,7 +537,7 @@ private addPrefixIntoResourceName(appConfig: any, projectPrefix: string) {
 }
 ```
 
-## 4. Context 사용
+# Context 사용
 
 * 명령줄 인수: cdk deploy --context key=value 명령을 통해 전달.
 * 환경 변수: export key=value 명령을 통해 설정.

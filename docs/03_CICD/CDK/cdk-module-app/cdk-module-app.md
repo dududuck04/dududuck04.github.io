@@ -1,17 +1,17 @@
 ---
 layout: default
-title: 2-1. TypeScript CDK로 재사용 가능한 모듈 구조 작성하기 (1편)
-nav_order: 21
-permalink: docs/02_Tech/03_CICD/CDK/cdk-module-app
-parent: 03_CICD
-grand_parent: Tech
+title: CDK로 모듈 구조 작성하기 (1편)
+nav_order: 1
+permalink: docs/02_Tech/03_CICD/CDK/cdk-module-app/cdk-module-app
+parent: CDK
+grand_parent: CICD
 ---
 
 # TypeScript CDK로 재사용 가능한 모듈 구조 작성하기 - cdk init 1편
 
 {: .no_toc }
 
-## 목차
+## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -38,7 +38,7 @@ AWS CDK와 TypeScript에 대한 기본 지식이 필요합니다.
 
 ---
 
-## 1. cdk init
+# cdk init
 
 **기본 CDK 구조**
 
@@ -60,7 +60,7 @@ my-cdk-app/
 └── README.md
 ```
 
-### 1.1 기본 CDK 앱 예제
+## 기본 CDK 앱 예제
 
 `bin/my-cdk-app.ts`
 ```typescript
@@ -96,7 +96,7 @@ export class TempStack extends cdk.Stack {
 }
 ```
 
-## 2. 모듈화된 CDK 구조
+# 모듈화된 CDK 구조
 
 다양한 환경에서 배포하고, 스택 간의 의존성 관리등을 개선한 구조입니다. 코드 재사용성을 극대화하는데 목표를 두었습니다.
 
@@ -134,7 +134,7 @@ export class TempStack extends cdk.Stack {
 
 ![img-1.png](img-1.png)
 
-### 2.1 디렉토리 구조
+## 디렉토리 구조
 
 * **bin 디렉토리**: 애플리케이션의 진입점 파일을 포함합니다.
 * **infra 디렉토리**: 리소스 배포 스택을 포함합니다.
@@ -142,13 +142,13 @@ export class TempStack extends cdk.Stack {
 * **config 디렉토리**: 환경 설정 파일을 포함합니다.
 * **scripts 디렉토리**: 배포 스크립트를 포함합니다.
 
-### 2.3 모듈화된 CDK 구조의 장점
+## 모듈화된 CDK 구조의 장점
 
 * **유지보수 용이성**: 각 디렉토리와 파일이 역할에 따라 나누어져 있어 관리가 용이합니다.
 * **재사용성**: 설정 파일을 분리하여 여러 환경에서 재사용할 수 있습니다.
 * **유연성**: 컨텍스트를 이용하여 런타임 중 설정 값을 동적으로 변경할 수 있습니다.
 
-## 3. 왜 모듈화가 필요한가?
+# 왜 모듈화가 필요한가?
 
 기존의 구조에서는 스택을 정의할 때 하드코딩된 값들이 많아 재 사용이 어려웠습니다. 아래는 VPC와 ElastiCach를 설정하는 예제입니다.
 
@@ -226,13 +226,13 @@ export default class ElasticacheNodeRedisStack extends cdk.Stack {
 }
 ```
 
-### 3.1 기존 구조의 문제점
+## 기존 구조의 문제점
 
 * **하드코딩된 설정**: VPC, Subnet, Security Group 등의 설정이 하드코딩되어 있어 재사용이 어렵습니다.
 * **유연성 부족**: 환경에 따른 설정 변경이 어렵습니다.
 * **재사용성 부족**: 다른 프로젝트나 환경에서 동일한 코드를 재사용하기 어렵습니다.
 
-## 4. 다음 편에서 다룰 내용
+# 다음 편에서 다룰 내용
 
 [2-2. CDK 컨텍스트 값의 개념과 사용](../cdk-module-context)
 
