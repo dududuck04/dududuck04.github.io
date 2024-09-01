@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 1. 02_AWS S3, Lambda, API Gateway를 활용한 실시간 이미지 리사이징 솔루션
+title: S3, Lambda, API Gateway를 활용한 실시간 이미지 리사이징 솔루션
 nav_order: 10
 permalink: docs/02_AWS/APIGateway/RESTAPIGateway/Image-Resizing-S3/image-resizing-s3
-parent: APIGateway
-grand_parent: 02_AWS
+parent: API Gateway
+grand_parent: AWS
 ---
 
 # AWS S3, Lambda, API Gateway를 활용한 실시간 이미지 리사이징 솔루션

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Tech
-nav_order: 2
+nav_order: 50
 has_children: true
 permalink: docs/02_Tech
 ---
