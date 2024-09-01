@@ -101,7 +101,7 @@ grand_parent: CICD
 
 # Construct 란?
 
-![img-1.png](img-1.png)
+![img.png](img.png)
 
 AWS Cloud Development Kit (AWS CDK)의 요소인 Construct는 AWS 리소스를 구성하고 관리하는 기본 단위입니다.
 

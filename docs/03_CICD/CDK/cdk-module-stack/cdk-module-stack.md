@@ -106,7 +106,7 @@ stack 배포, 및 사용법을 다룹니다.
 
 # Stack 이란
 
-![img-1.png](../cdk-module-construct/img-1.png)
+![img.png](img.png)
 
 AWS Cloud Development Kit (AWS CDK) 스택은 리소스를 정의하는 하나 이상의 Construct의 모음입니다.
 각 CDK 스택은 AWS CloudFormation 스택을 나타내며, 배포 시 스택 내의 리소스는 하나의 단위로 프로비저닝됩니다.
