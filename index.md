@@ -36,7 +36,8 @@ IaC: ★★★★☆
  - Deployment of AWS Resource with Terraform Tool
 
 English: ★★★★☆
- - Corporation Global Tech Meeting Live Translator 2024
+ - Proficient knowledge of technical jargon
+ - Business english (primary fluency)
 
 ### COMMENT
 - Highly-motivated and passionate DevOps Engineer interested in diverse implementation of the latest technology solution
