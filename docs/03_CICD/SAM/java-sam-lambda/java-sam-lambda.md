@@ -217,11 +217,11 @@ Outputs:
 
 ```
 
-### 3.2 SAM Template의 기본 구성
+## SAM Template의 기본 구성
 
 AWS SAM은 template.yaml 파일을 통해 실행되며, 본 예제 파일에서는 Lambda 함수와 관련된 설정을 정의합니다. 
 
-#### 3.2.1 표준 빌드 방식
+### 표준 빌드 방식
 
 AWS SAM CLI는 `sam build` 명령어를 실행할 때, 자동으로 template.yaml 파일에서 지정된 CodeUri 경로에서 Java 프로젝트의 `pom.xml` 혹은 `build.gradle` 파일을 찾아 빌드 과정을 진행합니다.
 
