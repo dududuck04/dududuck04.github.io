@@ -1,10 +1,10 @@
 ---
 layout: default
-title: CDK로 재사용가능한 모듈 구조 작성하기 (5편)
+title: 모듈 구조 작성하기 (5편)
 nav_order: 5
 permalink: docs/03_CICD/CDK/cdk-module-stack-advanced/cdk-module-stack-advanced
-parent: 03_CICD
-grand_parent: Tech
+parent: CDK
+grand_parent: CICD
 ---
 
 # 재활용 할 수 있는 CDK 모듈 생성하기 - Stack Advanced 5편

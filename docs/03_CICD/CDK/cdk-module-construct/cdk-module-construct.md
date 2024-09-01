@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CDK로 모듈 구조 작성하기 (4편)
+title: 모듈 구조 작성하기 (4편)
 nav_order: 4
 permalink: docs/03_CICD/CDK/cdk-module-construct/cdk-module-construct
 parent: CDK
