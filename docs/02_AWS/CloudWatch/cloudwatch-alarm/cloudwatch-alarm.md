@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 1. Cloud Watch Alarm
+title: Cloud Watch Alarm
 nav_order: 10
-permalink: docs/02_Tech/02_AWS/CloudWatch/cloudwatch-alarm
-parent: 02_AWS
-grand_parent: Tech
+permalink: docs/02_AWS/CloudWatch/cloudwatch-alarm/cloudwatch-alarm
+parent: AWS
+grand_parent: CloudWatch
 ---
 
 # CodeDeploy ECS Blue/Green 배포시 Install 단계 Timeout 시간 제한 조정 방법 (Feat. CloudWatch Alarm)
@@ -40,7 +40,7 @@ Timeout 설정을 조정하는 방법을 설명합니다.
 
 ---
 
-## 1. AWS CloudWatch 란?
+# AWS CloudWatch 란?
 
 AWS CloudWatch는 AWS 리소스 상태를 모니터링하고 경보를 설정하여 자원의 상태 변화를 실시간으로 감지할 수 있는 서비스입니다.
 
@@ -52,21 +52,21 @@ CloudWatch를 통해 시스템 전체의 리소스 사용률, 운영 상태를 �
 
 참고자료 : [Amazon CloudWatch란 무엇인가요?](https://docs.aws.amazon.com/ko_kr/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html)
 
-## 2. AWS CloudWatch 적용
+# AWS CloudWatch 적용
 
 CloudWatch에서 제공하는 메트릭을 활용하여 AWS ECS의 Blue/Green 배포 중 발생할 수 있는 문제를 감지할 수 있습니다.
 
 이 섹션은 CloudWatch의 Alarm 기능과 CodeDeploy의 롤백기능을 통해 code deploy 의 install 과정에 걸리는 지연 시간을 최소화 하는 과정을 설명합니다.
 
-### 2.1 오류 상황 시나리오
+## 오류 상황 시나리오
 
-#### 2.1.1 AWS ECS에서 서비스를 Blue/Green 방식으로 배포 진행
+### AWS ECS에서 서비스를 Blue/Green 방식으로 배포 진행
 
 * 새로운 버전의 애플리케이션을 기존 서비스와 병행하여 배포합니다.
 
 ![img-2.png](img-2.png)
 
-#### 2.1.2 AWS CodeDeploy를 이용한 배포 과정
+### AWS CodeDeploy를 이용한 배포 과정
 
 AWS ECS에서 서비스를 Blue/Green 방식으로 배포할 때, AWS CodeDeploy를 사용이 강제화 됩니다.
 
@@ -81,7 +81,7 @@ AWS ECS에서 서비스를 Blue/Green 방식으로 배포할 때, AWS CodeDeploy
 
 ![img-6.png](img-6.png)
 
-#### 2.1.3 신규 배포된 task set의 컨테이너 상태
+### 신규 배포된 task set의 컨테이너 상태
 
 신규 배포된 태스크 중 일부에서 문제가 발생하여 Unhealthy 상태가 될 수 있습니다.
 
@@ -96,11 +96,11 @@ code deploy는 헬스 체크를 통과하지 못한 컨테이너를 install 단�
 
 ![img-5.png](img-5.png)
 
-### 2.2 오류 상황 해결 방안
+## 오류 상황 해결 방안
 
 AWS Code Deploy와 Amazon CloudWatch를 결합하여 install 단계에서 배포가 지연되는 상황을 해결할 수 있습니다.
 
-#### 2.2.1 AWS Code Deploy의 롤백 및 알람 설정
+### AWS Code Deploy의 롤백 및 알람 설정
 
 CodeDeploy에서는 CloudWatch 알림을 활용하여 배포 중 문제가 감지되었을 때 자동으로 이전 버전으로 롤백할 수 있는 기능을 제공합니다.
 
@@ -114,7 +114,7 @@ CodeDeploy에서는 CloudWatch 알림을 활용하여 배포 중 문제가 감�
 
 ![img-8.png](img-8.png)
 
-## 3. CloudWatch Metric Alarm 설정
+# CloudWatch Metric Alarm 설정
 
 **활용할 지표**
 
@@ -126,12 +126,12 @@ CodeDeploy에서는 CloudWatch 알림을 활용하여 배포 중 문제가 감�
 참고 자료 : [CloudWatch Application Load Balancer의 지표](https://docs.aws.amazon.com/ko_kr/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html)
 
 
-### 3.1 알림 설정 방법
+## 알림 설정 방법
 
 CloudWatch에서는 서비스의 건강 상태를 모니터링 하기 위해 특정 지표를 이용하여 알림을 생성할 수 있습니다. 본 섹션에서는
 HealthyHostCount와 UnhealthyHostCount 두 지표를 이용해 알림을 생성해 보겠습니다.
 
-#### 3.1.1 HealthyHostCount 알림 생성
+### HealthyHostCount 알림 생성
 
 - **트리거 조건**: HealthyHostCount 값이 설정한 임계값 미만으로 3분 동안 3개의 데이터 포인트가 연속해서 발생하면 알림이 트리거됩니다.
 - **임계값**: 임계값을 1로 설정하여, HealthyHostCount가 평균적으로 1 미만인 경우 (즉, 모든 호스트가 건강하지 않은 경우) 알람이 울리도록 설정했습니다.
@@ -142,7 +142,7 @@ HealthyHostCount와 UnhealthyHostCount 두 지표를 이용해 알림을 생성�
 
 ![img-12.png](img-12.png)
 
-#### 3.1.2 UnHealthyHostCount 알림 생성
+### UnHealthyHostCount 알림 생성
 
 - **트리거 조건**: UnhealthyHostCount 값이 설정한 임계값 이상으로 3분 동안 3개의 데이터 포인트가 연속해서 발생하면 알림이 트리거됩니다.
 - **임계값**: 임계값을 1로 설정하여, UnhealthyHostCount가 최소 1 이상인 경우 (즉, 하나 이상의 호스트가 건강하지 않은 경우) 알람이 울리도록 설정했습니다.
@@ -151,7 +151,7 @@ HealthyHostCount와 UnhealthyHostCount 두 지표를 이용해 알림을 생성�
 
 - **누락 데이터 처리** : 누락된 데이터를 'good'으로 처리하여, 데이터가 없는 경우 임계값 위반으로 간주하지 않습니다. 이는 불필요한 알람을 방지하고, 실제 문제가 있을 때만 알람이 울리도록 합니다.
 
-#### 3.1.2 생성된 두 알림을 결합하여 복합 알림 만들기
+### 생성된 두 알림을 결합하여 복합 알림 만들기
 
 앞서 두 지표를 이용해 만든 알림을 선택하고 Create composite alarm 버튼을 클릭합니다.
 
@@ -165,7 +165,7 @@ HealthyHostCount와 UnhealthyHostCount 두 지표를 이용해 알림을 생성�
 
 ![img-15.png](img-15.png)
 
-### 3.2 AWS CloudWatch 누락된 데이터 처리 방법
+## AWS CloudWatch 누락된 데이터 처리 방법
 
 CloudWatch 알람을 설정할 때, 다양한 옵션을 통해 누락된 데이터를 어떻게 처리할지 결정할 수 있습니다.
 
@@ -180,7 +180,7 @@ CloudWatch 알람을 설정할 때, 다양한 옵션을 통해 누락된 데이�
 - **일부 데이터가 누락된 경우**: 필요한 최소한의 데이터 포인트가 존재한다면, 실제 데이터 포인트를 기반으로 알람 상태를 평가합니다.
 - **대부분의 데이터가 누락된 경우**: 사용자가 지정한 누락된 데이터 처리 방법에 따라 알람 상태를 평가합니다.
 
-## 4. 시나리오 해결 확인
+# 시나리오 해결 확인
 
 1. cloudwatch 경보 발생
 
