@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 1-1. 02_AWS EC2에서 Docker를 사용하여 Jenkins 배포하기
-nav_order: 1
-permalink: docs/02_Tech/03_CICD/Jenkins/jenkins-installation
-parent: 03_CICD
-grand_parent: Tech
+title: Docker를 사용하여 Jenkins 배포
+nav_order: 2
+permalink: docs/03_CICD/Jenkins/jenkins-installation/jenkins-installation
+parent: Jenkins
+grand_parent: CICD
 ---
 
 # AWS EC2에서 Docker를 사용하여 Jenkins 배포하기
@@ -46,7 +46,7 @@ Ubuntu version 22.04 LTS / 사용한 UBUNTU_AMI_ID =ami-09a7535106fbd42d5
 
 ---
 
-## 1. AWS EC2 Ubuntu OS를 awscli를 통해 배포
+# AWS EC2 Ubuntu OS를 awscli를 통해 배포
 
 EC2 인스턴스 생성시, userdata 스크립트를 포함하여 인스턴스가 시작될 때 userdata에 정의된 command를 자동으로 수행하도록 합니다.
 
@@ -54,7 +54,7 @@ awscli를 이용하여 배포합니다.
 
 보안그룹은 웹 서버에 필요한 80(HTTP) 포트와 443(HTTPS) 포트를 열어 외부의 접근을 허용합니다.
 
-### awscli를 활용한 EC2 Ubuntu OS 배포
+## awscli를 활용한 EC2 Ubuntu OS 배포
 ```shell
 aws ec2 run-instances \
   --image-id ${UBUNTU_AMI_ID} \
@@ -69,9 +69,9 @@ aws ec2 run-instances \
   --user-data file://userdata.txt
 ``` 
 
-## 2. userdata를 이용한 Jenkins 배포 자동화
+# userdata를 이용한 Jenkins 배포 자동화
 
-### 2.1 userdata.txt
+## userdata.txt
 
 아래 스크립트는 EC2 인스턴스 생성 시 실행되며 Jenkins을 설치하기 위한 환경을 구축합니다. 
 Jenkins 디렉토리 생성, Docker 설치 및 설정, Jenkins Docker 컨테이너 실행 등으로 구성되었습니다.
@@ -110,7 +110,7 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword > /home/u
 chown ubuntu:ubuntu /home/ubuntu/jenkins/initialAdminPassword.txt
 ```
 
-### 2.2 userdata.txt 상세 설명
+## userdata.txt 상세 설명
 
 **사용자 변수 지정**
 * Jenkins과 Docker를 실행할 사용자 이름을 설정합니다.
@@ -190,7 +190,7 @@ install suggested plugins를 클릭하고 젠킨슨을 설치해줍니다.
 접속 성공
 ![img-5.png](img-5.png)
 
-## 별첨
+# 별첨
 
 **설치된 플러그인에대한 간략한 설명**
 
@@ -234,7 +234,7 @@ install suggested plugins를 클릭하고 젠킨슨을 설치해줍니다.
 
 **DataTables.net API:** jQuery DataTables를 Jenkins 플러그인에 제공합니다. 이를 통해 HTML 테이블에 고급 기능을 쉽게 추가할 수 있습니다.
 
-## FAQ
+# FAQ
 
 Q: 설치된 젠킨슨에서 플러그인을 재대로 다운받지 못하면 어떻게 해야 하나요?
 

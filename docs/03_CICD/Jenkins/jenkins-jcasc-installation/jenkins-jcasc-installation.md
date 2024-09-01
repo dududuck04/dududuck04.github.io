@@ -1,17 +1,17 @@
 ---
 layout: default
-title: 1-2 Jenkins 설치하기 with JCASC
-nav_order: 2
-permalink: docs/02_Tech/03_CICD/Jenkins/jenkins-jcasc-installation
-parent: 03_CICD
-grand_parent: Tech
+title: JCASC plugin
+nav_order: 3
+permalink: docs/03_CICD/Jenkins/jenkins-jcasc-installation/jenkins-jcasc-installation
+parent: Jenkins
+grand_parent: CICD
 ---
 
 # Jenkins Configuration as Code 플러그인을 사용하여 사용자 정의 구성이 적용된 Jenkins Docker 서비스 배포하기
 
 {: .no_toc }
 
-## 목차
+## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -47,12 +47,12 @@ Jenkins에 대한 기본적인 이해가 필요합니다.
 
 https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
 
-## EC2 인스턴스에 사용자 정의 구성내용을 포한한 Jenkins 인스턴스 배포
+# EC2 인스턴스에 사용자 정의 구성내용을 포한한 Jenkins 인스턴스 배포
 
 awscli를 활용한 ec2 배포 부분은 [앞에서 설명한 방식](https://blog.kimkm.com/docs/02_Tech/CICD/Jenkins/jenkins-installation)과 동일합니다.
 본 내용에서는 최초 젠킨슨 이미지를 배포할 때 유저 프로비저닝 등 다양한 환경구성을 함께 적용하여 배포하는 방식을 공유합니다.
 
-### awscli를 활용한 EC2 배포
+## awscli를 활용한 EC2 배포
 ```shell
 aws ec2 run-instances \
   --image-id ${UBUNTU_AMI_ID} \
@@ -67,9 +67,9 @@ aws ec2 run-instances \
   --user-data file://userdata.txt
 ``` 
 
-### userdata를 이용한 Jenkins 자동배포
+## userdata를 이용한 Jenkins 자동배포
 
-### 2.1 userdata.txt
+## userdata.txt
 
 아래 스크립트는 EC2 인스턴스 생성 시 실행되며 Jenkins을 설치하기 위한 환경을 구축합니다.
 ~ 등으로 구성되었습니다.
@@ -176,7 +176,7 @@ su - ${USER_NAME} -c "cd ~/jenkins/data; docker-compose up -d"
 ```
 
 
-### 2.2 userdata.txt 상세 설명
+## userdata.txt 상세 설명
 
 **사용자 변수 지정**
 * Jenkins과 Docker를 실행할 사용자 이름을 설정합니다.
@@ -352,7 +352,7 @@ su - ${USER_NAME} -c "cd ~/jenkins/data; docker-compose up -d"
 ```
 
 
-## jenkins 접속하기
+# jenkins 접속하기
 
 http://<호스트의 IP 주소 또는 도메인>:8080 에 접속합니다.
 
@@ -360,9 +360,9 @@ http://<호스트의 IP 주소 또는 도메인>:8080 에 접속합니다.
 
 ![img-1.png](img-1.png)
 
-## Advanced Jenkins Configuration as Code
+# Advanced Jenkins Configuration as Code
 
-### 1. 세분화된 Role-Based Access Control ( RBAC ) 설정
+## 세분화된 Role-Based Access Control ( RBAC ) 설정
 
 **Global roles**
 ![img-5.png](img-5.png)
@@ -374,7 +374,7 @@ http://<호스트의 IP 주소 또는 도메인>:8080 에 접속합니다.
 적용 범위: 특정 패턴이나 경로에 일치하는 항목에 대한 권한을 제어합니다. 이는 폴더 구조 내에서 미세한 접근 제어를 가능하게 하여, 특정 프로젝트 또는 팀의 작업에 대한 접근을 제한할 수 있습니다.
 예시: 'FolderA' 역할은 "A/." 패턴에 일치하는 모든 항목에 대한 특정 권한을 가지며, 'FolderB' 역할은 "B." 패턴에 일치하는 항목에 대해 다른 권한 세트를 가집니다.
 
-#### Agent roles
+### Agent roles
 
 Jenkins에서 "Manage Roles" 페이지는 역할 기반 접근 제어(Role-Based Access Control, RBAC)를 설정하는 중요한 부분입니다. 여기서 관리자는 세 가지 유형의 역할을 정의할 수 있습니다: "Global roles", "Item roles", 그리고 "Agent roles". 이 역할들은 Jenkins 내에서 다양한 자원과 작업에 대한 접근 권한을 세밀하게 제어할 수 있게 합니다. 각 역할 유형의 차이점을 이해하는 것은 권한 관리와 보안 정책을 효과적으로 적용하는 데 중요합니다.
 
@@ -450,7 +450,7 @@ jenkins:
 
 
 
-## FAQ
+# FAQ
 
 Q: 설치된 젠킨슨에서 플러그인을 재대로 다운받지 못하면 어떻게 해야 하나요?
 
