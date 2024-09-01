@@ -859,23 +859,21 @@ route group을 통해 특정 페이지에만 적용되게 변경할 수 있습�
 
 * **route group의 이점**
 
-![imt-12.png](imt-12.png)
-
 URL 경로 구조에 영향을 주지 않고 파일을 조직할 수 있습니다. () 를 사용해 새 폴더를 생성하면 그 이름은 URL 경로에 포함되지 않습니다.
 
 라우트 그룹을 통해 애플리케이션을 관리하기 쉬운 구조로 조직화 할 수 있습니다.
 
-### <Suspense> 를 사용해 특정 컴포넌트 스트리밍 하기
+### Suspense 를 사용해 특정 컴포넌트 스트리밍 하기
 
-<Suspense> 를 사용하면 특정 조건이 충족될 때 까지 애플리케이션의 일부를 지연시킬 수 있습니다.
-이를 통해 동적 컴포넌트를 Suspense로 감싼 다음, 동적 컴포넌트가 로드되는 동안 표시할 대체 컴포넌트를 전달 할 수 있습니다.
+`Suspense` 를 사용하면 특정 조건이 충족될 때 까지 애플리케이션의 일부를 지연시킬 수 있습니다.
+이를 통해 동적 컴포넌트를 `Suspense`로 감싼 다음, 동적 컴포넌트가 로드되는 동안 표시할 대체 컴포넌트를 전달 할 수 있습니다.
 
-현재 fetchRevenue() 함수는 전체 페이지 로딩을 지연시키고 있습니다. Suspense를 사용하여 이 컴포넌트만 스트리밍 하고 페이지의 나머지 UI를 우선 표시할 수 있습니다.
+현재 `fetchRevenue()` 함수는 전체 페이지 로딩을 지연시키고 있습니다. `Suspense`를 사용하여 이 컴포넌트만 스트리밍 하고 페이지의 나머지 UI를 우선 표시할 수 있습니다.
 
-/dashboard/(overview)/page.tsx 에서 fetchRevenue() 함수와 그 데이터의 모든 인스턴스를 삭제합니다.
+`/dashboard/(overview)/page.tsx` 에서 `fetchRevenue()` 함수와 그 데이터의 모든 인스턴스를 삭제합니다.
 
-그리고 <Suspense> 컴포넌트로 <RevenueChard /> 를 감싸줍니다.
-로딩되는 동안 표시될 <RevenueChartSkeleton> 컴포넌트도 넣어줍니다.
+그리고 `<Suspense>` 컴포넌트로 `<RevenueChard />` 를 감싸줍니다.
+로딩되는 동안 표시될 `<RevenueChartSkeleton>` 컴포넌트도 넣어줍니다.
 
 
 ```typescript
@@ -899,9 +897,9 @@ export default async function Page() {
 }
 ```
 
-<RevenuChard> 컴포넌트 내부에서 자체 데이터를 패치하도록 업데이트 합니다.
+`<RevenuChard>` 컴포넌트 내부에서 자체 데이터를 패치하도록 업데이트 합니다.
 
-/app/ui/dashboard/revenue-chart.tsx
+`/app/ui/dashboard/revenue-chart.tsx`
 
 ```typescript jsx
 import { generateYAxis } from '@/app/lib/utils';
@@ -953,11 +951,11 @@ export default async function RevenueChart() { // Make component async, remove t
 
 ### 컴포넌트 그룹화
 
-<Card> 컴포넌트들을 Suspense로 래핑하는 작업을 진행하겠습니다.
+`<Card>` 컴포넌트들을 Suspense로 래핑하는 작업을 진행하겠습니다.
 
 정적인 컴포넌트가 우선 표시된 후, 그 다음 동적인 카드를 표시하게 할 수 있습니다.
 
-/dashboard/(overview)/page.tsx
+`/dashboard/(overview)/page.tsx`
 
 ```typescript jsx
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
@@ -982,7 +980,7 @@ export default async function Page() {
 
 ```
 
-/app/ui/dashboard/cards.tsx
+`/app/ui/dashboard/cards.tsx`
 
 ```typescript jsx
 // ...
@@ -1016,7 +1014,7 @@ export default async function CardWrapper() {
 이 방식을 적용하고 페이지를 새로고침하면, 모든 카드가 동시에 로드되는 것을 확인 할 수 있습니다.
 routing group을 통해 여러 컴포넌트를 동시에 로드할 수 있습니다.
 
-### <Suspense> 사용 전략
+### `<Suspense>` 사용 전략
 
 **배치 시 고려할 사항**
 
@@ -1025,12 +1023,14 @@ routing group을 통해 여러 컴포넌트를 동시에 로드할 수 있습니
 * 컴포넌트가 데이터 패칭에 의존하는지 여부.
 
 방법 1. loading.tsx - 전체 페이지를 스트리밍 할 수 있지만, 컴포넌트 중 하나 때문에 로딩 시간이 지연될 수 있다.
+
 방법 2. 모든 컴포넌트를 개별적으로 스트리밍 할 수 있지만 준비되는 대로 UI가 표시되어 시각적으로 불편할 수 있다.
+
 방법 3. 래퍼 컴포넌트를 통해 그룹별 스트리밍 할 수 있다.
 
 # Search and Pagination
 
-/invoices page에서 serch 와 pagination 기능을 추가해볼 수 있습니다.
+`/invoices page`에서 `serch` 와 `pagination` 기능을 추가해볼 수 있습니다.
 
 `/app/dashboard/invoices/page.tsx`
 ```typescript jsx
@@ -1065,9 +1065,9 @@ export default async function Page() {
 
 **컴포넌트 설명**
 
-- <Search/>는 사용자가 특정 인보이스를 검색할 수 있게 합니다.
-- <Pagination/>는 사용자가 인보이스 페이지를 넘나들 수 있게 합니다.
-- <Table/>은 인보이스를 표시합니다.
+- `<Search/>`는 사용자가 특정 인보이스를 검색할 수 있게 합니다.
+- `<Pagination/>`는 사용자가 인보이스 페이지를 넘나들 수 있게 합니다.
+- `<Table/>`은 인보이스를 표시합니다.
 
 검색 기능은 클라이언트와 서버 양쪽에서 작동합니다.
 사용자가 클라이언트에서 인보이스를 검색할 때 URL 파라미터가 업데이트되고, 
