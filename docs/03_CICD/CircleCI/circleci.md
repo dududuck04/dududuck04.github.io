@@ -1,16 +1,15 @@
 ---
 layout: default
-title: 2. CircleCI
-nav_order: 20
-permalink: docs/02_Tech/03_CICD/CircleCI
-parent: 03_CICD
-grand_parent: Tech
+title: CircleCI
+nav_order: 30
+permalink: docs/03_CICD/CircleCI/circlei
+parent: CICD
 ---
 
 # Circle CI
 {: .no_toc }
 
-## 목차
+## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -38,7 +37,7 @@ grand_parent: Tech
 * GitHub 계정
 * CircleCI 계정
 
-## 1. CircleCI의 주요 기능
+# CircleCI의 주요 기능
 
 1. **자동화**: 코드의 빌드, 테스트, 배포 전체 CI/CD 프로세스를 자동화합니다. 
 2. **커스터마이징**: YAML 파일을 통해 작업, 워크플로우, 단계를 구성하여 프로젝트 요구사항에 맞게 커스터마이징할 수 있습니다. 
@@ -47,9 +46,9 @@ grand_parent: Tech
 5. **SSH 디버깅**: SSH를 사용하여 작업을 다시 실행할 수 있어 심층 디버깅이 가능합니다.
 6. **환경 유연성**: 다양한 운영 체제 및 커스텀 Docker 이미지를 지원하여 빌드 환경의 유연성을 제공합니다.
 
-## 2. CircleCI 사용
+# CircleCI 사용
 
-### 2.1 지원되는 Git Repository
+## 지원되는 Git Repository
 
 1. GitLab
 2. GitHub
@@ -57,7 +56,7 @@ grand_parent: Tech
 
 ![img-1.png](img-1.png)
 
-### 2.2 프로젝트 추가
+## 프로젝트 추가
 
 CircleCI 대시보드에서 배포할 저장소를 선택한 후 프로젝트를 추가할 수 있습니다.
 
@@ -65,7 +64,7 @@ CircleCI 대시보드에서 배포할 저장소를 선택한 후 프로젝트를
 
 참고 코드 : https://github.com/AmanPathak-DevOps/CircleCI-ReactJS.git
 
-### 2.3 구성 파일 생성
+## 구성 파일 생성
 
 repository에 `.circleci` 폴더를 생성하고 `config.yml` 파일을 추가하세요.
 
@@ -164,13 +163,13 @@ workflows:
                 - master
 ```
 
-### 2.4 구성 파일 상세 설명
+## 구성 파일 상세 설명
 
-#### 2.4.1 Jobs
+### Jobs
 
 * jobs 섹션은 CircleCI에서 실행할 개별 작업을 정의합니다. 각 작업을 통해 빌드, 테스트, 배포등의 작업을 수행할 수 있습니다.
 
-#### 2.4.2 Build
+### Build
 
 * 빌드 작업을 실행할 이미지를 지정할 수 있습니다.
 * `docker_layer_caching: true`옵션을 통해 Docker 레이어 캐싱을 활성화하여 빌드 속도를 높일 수 있습니다.
@@ -207,7 +206,7 @@ workflows:
             - .
 ```
 
-#### 2.4.3 Deploy
+### Deploy
 
 * deploy step에서 빌드 결과를 AWS S3 버킷에 배포하는 작업을 수행합니다.
 * `attach_workspace`를 통해 이전 작업의 작업 공간을 연결하여 빌드 결과를 사용할 수 있습니다.
@@ -226,7 +225,7 @@ workflows:
 
 ```
 
-#### 2.4.4 workflows
+### workflows
 
 * 여러 작업을 조합하여 빌드 파이프라인을 정의할 수 있습니다.
 * workflow 하위의 `execute_bulk`는 단순 워크 플로우 이름입니다.
@@ -247,23 +246,23 @@ workflows:
                 - master
 ```
 
-#### 2.4.5 CircleCI 콘솔 확인
+### CircleCI 콘솔 확인
 
 master 브랜치에 push 했을 때는 deploy 작업이 추가로 수행된 것을 확인할 수 있습니다.
 
 ![img-4.png](img-4.png)
 
-#### 2.4.6 CircleCI에서 AWS 자격증명 설정하기
+### CircleCI에서 AWS 자격증명 설정하기
 
 프로젝트 설정의 환경 변수 부분에서 AWS 자격증명을 등록해줍니다.
 
 ![img-5.png](img-5.png)
 
-#### 2.4.7 deploy 결과 s3에서 확인하기
+### deploy 결과 s3에서 확인하기
 
 ![img-6.png](img-6.png)
 
-#### 2.4.8 S3 버킷 웹페이지 활성화하기
+### S3 버킷 웹페이지 활성화하기
 
 * s3 버킷 내에 정적 웹 사이트 호스팅을 활성화 합니다.
 * 버킷 퍼블릭 액세스를 허용합니다.
@@ -272,26 +271,26 @@ master 브랜치에 push 했을 때는 deploy 작업이 추가로 수행된 것�
 
 ![img-7.png](img-7.png)
 
-#### 2.4.9 실제 웹페이지 확인
+### 실제 웹페이지 확인
 
 ![img-8.png](img-8.png)
 
-### 3. Orbs 사용하기
+## Orbs 사용하기
 
 Orbs는 CircleCI의 독특한 기능으로, 써드 파티 도구와의 통합을 쉽게 할 수 있는 재사용 가능한 YAML 구성 패키지입니다.
 
-#### 3.1 Orbs 사용 이유
+### Orbs 사용 이유
 
 **프로젝트 구성 시간 절약**: 반복적인 설정 작업을 단순화하여 프로젝트 구성 시간을 줄여줍니다.
 **효율성 증가**: 여러 프로젝트에서 공통으로 사용하는 설정을 Orbs로 정의하여 효율성을 높입니다.
 **써드 파티 통합 간소화**: Orbs를 사용하면 다양한 써드 파티 도구와의 통합이 쉬워집니다.
 
-#### 3.2 Orbs 사용 방법
+### Orbs 사용 방법
 
 **기존 Orbs 사용**: [CircleCI Orbs 레지스트리](https://circleci.com/developer/orbs)에서 원하는 Orbs의 설정 코드를 복사하여 사용합니다.
 **Orbs 직접 생성**: 필요에 맞는 Orbs가 없는 경우, [CircleCI의 베스트 프랙티스와 시작 가이드](https://circleci.com/docs/orb-development-kit/)를 참고하여 직접 Orbs를 생성할 수 있습니다.
 
-#### 3.3 사용할 수 있는 Orbs 예시
+### 사용할 수 있는 Orbs 예시
 
 * Slack
 * AWS
@@ -302,7 +301,7 @@ Orbs는 CircleCI의 독특한 기능으로, 써드 파티 도구와의 통합을
 
 ![img-9.png](img-9.png)
 
-#### 3.4 aws orbs 적용
+### aws orbs 적용
 
 관련 orbs 문서 : [Orbs/circleci/aws-cli@4.1.3](https://circleci.com/developer/orbs/orb/circleci/aws-cli)
 
@@ -368,7 +367,7 @@ workflows:
                 - master
 ```
 
-#### 3.5 aws orbs 배포 확인
+### aws orbs 배포 확인
 
 * aws orbs를 사용하면 AWS CLI 를 설치하고 aws configure을 간소화 할 수 있습니다.
 
