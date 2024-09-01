@@ -62,16 +62,14 @@ Lambda@Edge를 사용하면 함수를 오리진 서버가 아닌 최종 사용�
 ## CloudFront Functions의 적합한 사용 사례
 
 * **헤더 조작**: CloudFront 응답에 사용자가 필요한 헤더를 추가하여 브라우저 캐싱 제어 및 특정 헤더 추가등 기능을 사용할 수 있습니다.
-* URL 리디렉션 또는 다시 쓰기: 요청 정보를 기반으로 사용자를 다른 페이지로 리디렉션하거나 경로를 변경합니다.
-* 요청 권한 부여: JWT와 같은 해시된 권한 부여 토큰을 검증하여 요청을 인증합니다.
-
-샘플 코드 주소 : [aws-samples/amazon-cloudfront-functions](https://github.com/aws-samples/amazon-cloudfront-functions)
-
-## CloudFront Functions의 적합한 사용 사례
+* **URL 리디렉션 또는 다시 쓰기**: 요청 정보를 기반으로 사용자를 다른 페이지로 리디렉션하거나 경로를 변경합니다.
+* **요청 권한 부여**: JWT와 같은 해시된 권한 부여 토큰을 검증하여 요청을 인증합니다.
 - **캐시 키 정규화**: HTTP 요청 속성(헤더, 쿼리 문자열, 쿠키, URL 경로)을 변환하여 최적의 캐시 키를 생성하고 캐시 적중률을 개선합니다.
 - **헤더 조작**: 요청 또는 응답에서 HTTP 헤더를 삽입, 수정 또는 삭제합니다.
 - **URL 리디렉션 또는 다시 쓰기**: 요청 정보를 기반으로 사용자를 다른 페이지로 리디렉션하거나 경로를 변경합니다.
 - **요청 권한 부여**: JWT와 같은 해시된 권한 부여 토큰을 검증하여 요청을 인증합니다.
+
+샘플 코드 주소 : [aws-samples/amazon-cloudfront-functions](https://github.com/aws-samples/amazon-cloudfront-functions)
 
 [CloudFront Functions 시작하기](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-functions.html)
 

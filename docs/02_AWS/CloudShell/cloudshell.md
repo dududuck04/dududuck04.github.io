@@ -1,10 +1,9 @@
 ---
 layout: default
-title: 3. CloudShell
+title: CloudShell
 nav_order: 30
-permalink: docs/02_Tech/02_AWS/CloudShell
-parent: 02_AWS
-grand_parent: Tech
+permalink: docs/02_AWS/CloudShell/cloudshell
+parent: AWS
 ---
 
 # CloudShell을 사용하여 Docker Image 업로드 하기
@@ -34,7 +33,7 @@ CloudShell을 활용하여 Docker Hub에서 이미지를 가져와 ECR에 업로
 
 ---
 
-## 1. CloudShell 사용하기
+# CloudShell 사용하기
 
 CloudShell은 AWS 콘솔에서 리소스에 직접 액세스할 수 있는 셸을 제공합니다. Bash, PowerShell, Z shell과 같은 다양한 셸을 지원하며, 추가 다운로드나 설치 없이 AWS CLI 명령을 실행할 수 있습니다.
 
@@ -42,13 +41,13 @@ CloudShell을 시작하면 Amazon Linux 2023을 기반으로 하는 컴퓨팅 �
 
 CloudShell 사용 시작하기: [Cloudshell 시작하기](https://docs.aws.amazon.com/ko_kr/cloudshell/latest/userguide/welcome.html#how-to-get-started)
 
-## 2. CloudShell 에서의 Docker 지원
+# CloudShell 에서의 Docker 지원
 
 AWS CloudShell은 현재 13개 리전에서 Docker를 지원합니다.
 
 자세히 알아보기: [AWS CloudShell, 이제 13개 리전에서 Docker 지원](https://aws.amazon.com/ko/about-aws/whats-new/2024/01/aws-cloudshell-docker-13-regions/)
 
-## 3. CloudShell을 사용하여 Docker 이미지 업로드 단계
+# CloudShell을 사용하여 Docker 이미지 업로드 단계
 
 **Docker 이미지 가져오기:** 먼저 CloudShell 환경으로 dockerhub에서 nignx와 같은 sample Docker 이미지를 가져옵니다.
 
