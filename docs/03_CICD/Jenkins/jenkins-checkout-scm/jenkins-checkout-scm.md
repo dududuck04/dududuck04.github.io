@@ -12,7 +12,6 @@ grand_parent: CICD
 Jenkins 파이프라인에서 소스 코드 버전 관리(SCM) 시스템을 사용하는 법 가이드
 
 {: .no_toc }
-![img.png](img.png)
 
 ## 목차
 {: .no_toc .text-delta }
