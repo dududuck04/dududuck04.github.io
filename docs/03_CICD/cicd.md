@@ -1,19 +1,13 @@
 ---
 layout: default
-title: 03_CICD
-nav_order: 20
+title: CICD
+nav_order: 3
 has_children: true
-permalink: docs/02_Tech/03_CICD
-parent: Tech
+permalink: docs/03_CICD
 ---
 
 # CICD
 {: .no_toc }
 
-## Table of contents
-{: .no_toc .text-delta }
-
 1. TOC
 {:toc}
-
----
