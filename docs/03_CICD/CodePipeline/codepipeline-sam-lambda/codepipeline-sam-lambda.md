@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 2-1. 02_AWS CodePipeline을 이용해 SAM으로 Lambda 배포하기
-nav_order: 21
-permalink: docs/02_Tech/03_CICD/CodePipeline/codepipeline-sam-lambda
-parent: 03_CICD
-grand_parent: Tech
+title: AWS SAM으로 Lambda 배포하기
+nav_order: 1
+permalink: docs/03_CICD/CodePipeline/codepipeline-sam-lambda/codepipeline-sam-lambda
+parent: CodePipeline
+grand_parent: CICD
 ---
 
 # AWS CodePipeline을 이용해 SAM으로 Lambda 배포하기
@@ -51,21 +51,21 @@ AWS Code Series 및 AWS Lambda, SAM에 대한 기본 지식이 필요합니다.
 
 ---
 
-## 1. AWS CodeCommit Repository 구성
+# AWS CodeCommit Repository 구성
 
 소스 코드 저장소로 AWS CodeCommit을 사용합니다. 
 CodeCommit은 AWS에서 제공하는 GIT 형상 관리 서비스로, 프라이빗 레포지토리를 제공합니다.
 
 ![img-1.png](img-1.png)
 
-### 1.1 전체 소스코드 구조
+## 전체 소스코드 구조
 
 | 실제 프로젝트 파일 구조 | 파일 및 디렉토리 구조 간단 설명      |
 |-|-------------------------|
 |![img_3.png](img_3.png)| ![img_4.png](img_4.png) |
 
 
-### 2. buildspec.yml 구성
+## buildspec.yml 구성
 
 `buildspec.yml`은 CodeBuild 프로젝트 구성파일입니다.
 
@@ -88,7 +88,7 @@ phases:
       - sam deploy --no-confirm-changeset --no-progressbar --no-fail-on-empty-changeset
 ```
 
-#### 2.1 buildspec.yml 상세설명
+### buildspec.yml 상세설명
 
 **2.1.1 `sam build`**
 
@@ -113,7 +113,7 @@ Node.js를 예로 들면, npm install을 통해 필요한 라이브러리를 설
   - sam deploy --no-confirm-changeset --no-progressbar --no-fail-on-empty-changeset
  ```
 
-### 3. samconfig.toml 구성
+## samconfig.toml 구성
 
 `samconfig.toml`은 sam deploy 실행 시 포함되는 AWS SAM CLI 명령의 파라미터 값을 저장하고, 
 명령 실행 시 그 내용이 적용할 수 있게 해주는 파일입니다. sam deploy 명령을 간소화 해줍니다.
@@ -145,9 +145,9 @@ capabilities = "CAPABILITY_IAM"
 no_beta_features = true
 ```
 
-#### 3.1 samconfig.toml 상세설명
+## samconfig.toml 상세설명
 
-##### 3.1.1 `[default.global.parameters]`
+### `[default.global.parameters]`
 
 모든 SAM 명령에 적용되는 기본 파라미터를 지정합니다.
 
