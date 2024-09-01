@@ -14,7 +14,7 @@ Next.js는 React 기반의 프레임워크로, 서버 사이드 렌더링, 스�
 
 이 글에서는 Next.js를 이용해 간단한 금융 대시보드 페이지를 만드는 과정을 설명합니다.
 
-## 목차
+# 목차
 {: .no_toc .text-delta }
 
 1. TOC
@@ -22,7 +22,7 @@ Next.js는 React 기반의 프레임워크로, 서버 사이드 렌더링, 스�
 
 ---
 
-## 글 요약
+# 글 요약
 
 제작할 웹 어플리케이션은 다음과 같은 기능을 가지고 있습니다.
 
@@ -33,7 +33,7 @@ Next.js는 React 기반의 프레임워크로, 서버 사이드 렌더링, 스�
 * **데이터베이스**: 애플리케이션의 데이터를 관리하는 데이터베이스 설정입니다.
 
 
-## 시작하기 전
+# 시작하기 전
 
 이 과정은 React 및 JavaScript에 대한 기본적인 이해를 가정합니다.
 
@@ -41,7 +41,7 @@ Next.js는 React 기반의 프레임워크로, 서버 사이드 렌더링, 스�
 
 ---
 
-## 프로젝트 생성하기
+# 프로젝트 생성하기
 
 sample next.js application 만들기
 
@@ -49,7 +49,7 @@ sample next.js application 만들기
 npx create-next-app@latest nextjs-dashboard --use-npm --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example"
 ```
 
-### 프로젝트 내용 이해하기
+## 프로젝트 내용 이해하기
 
 **폴더 구조**
 
@@ -65,7 +65,7 @@ npx create-next-app@latest nextjs-dashboard --use-npm --example "https://github.
 데이터베이스나 API를 아직 사용하지 않다면 플레이스홀더 데이터를 이용해 미리 데이터를 구성할 수 있습니다.
 이 프로젝트에서는 `app/lib/placeholder-data.js`에 플레이스홀더 데이터를 구성했습니다.
 
-## 개발 프로젝스 실행하기
+# 개발 프로젝스 실행하기
 
 프로젝트는 typescript로 작성되었습니다.
 
@@ -76,13 +76,13 @@ npm i
 npm run dev
 ```
 
-## CSS 스타일링 방법
+# CSS 스타일링 방법
 
-### 글로벌 스타일
+## 글로벌 스타일
 
 프로젝트 내에 있는 `/app/ui/global.css`을 사용하여 애플리케이션 전체에 공통적으로 적용되는 CSS 규칙을 정의할 수 있습니다.
 
-### 글로벌 스타일 적용
+## 글로벌 스타일 적용
 
 어플리케이션 최상위 컴포넌트에 적용해야 합니다. next.js에서는 루트 레이아웃이라고 부릅니다.
 
@@ -105,7 +105,7 @@ export default function RootLayout({
 }
 ```
 
-### `/app/layout.tsx` 상세 설명
+## `/app/layout.tsx` 상세 설명
 
 루트레이아웃은 애플리케이션의 최상위 구조를 설정하며, 모든 페이지와 컴포넌트는 이 레이아웃 내에서 렌더링됩니다.
 
@@ -115,21 +115,21 @@ export default function RootLayout({
   - children의 타입을 정의해주었습니다. // React.ReactNode는 렌더링 될 수 있는 거의 모든 종류의 React 노드 ( 텍스트, HTML , 다른 컴포넌트 )를 포함할 수 있는 타입
 - **return** : <html> 요소를 반환하며, 내부 <body> 태그 내에는 children이 렌더링 되는데, 앞서 RootLayout을 사용하여 래핑된 모든 자식 컴포넌트를 의미합니다.
 
-### 글로벌 스타일 결과 확인
+## 글로벌 스타일 결과 확인
 
 앞서 local에 생성한 주소에서 글로벌 스타일이 적용되었는지 확인해봅니다.
 
 ![img-2.png](img-2.png)
 
-### Tailwind CSS
+## Tailwind CSS
 
 Tailwind CSS는 유틸리티 클래스를 직접 TSX 마크업에 빠르게 작성할 수 있도록 해주는 CSS 프레임워크입니다.
 
-## 사용자 정의 폰트와 이미지 추가하기
+# 사용자 정의 폰트와 이미지 추가하기
 
 Next.js는 next/font 모듈을 사용하여 폰트를 자동으로 최적화합니다. 
 
-### 사용자 정의 폰트 추가 방법
+## 사용자 정의 폰트 추가 방법
 
 - `/app/ui` 폴더에 fonts.ts 파일을 생성합니다.
 - 아래와 같이 코드를 구성합니다. subsets 은 폰트 모듈에서 제공하는 폰트 스타일 입니다.
@@ -140,7 +140,7 @@ import { Inter } from 'next/font/google';
 export const inter = Inter({ subsets: ['latin'] });
 ```
 
-#### 사용자 정의 폰트 글로벌 적용
+### 사용자 정의 폰트 글로벌 적용
 
 - `/app/layout.tsx` 파일에서 이 폰트를 <body> 요소에 추가합니다.
 
@@ -161,22 +161,22 @@ export default function RootLayout({
 }
 ```
 
-#### 코드 상세 설명
+### 코드 상세 설명
 
 - **${inter.className}** : Inter 폰트를 적용하기 위한 'next/font' 모듈이 제공하는 클래스 이름을 동적으로 할당합니다.
 - **antialiased** : 폰트의 가장자리를 부드럽게 처리해주는 클래스입니다.
 
-#### 브라우저에서 확인
+### 브라우저에서 확인
 
 ![img-3.png](img-3.png)
 
-### 이미지 추가와 최적화
+## 이미지 추가와 최적화
 
 페이지에 구체적인 이미지를 추가해야할 경우가 있습니다. 각 페이지는 다를 수 있기 때문에 구체적인 각각의 구성요소는 해당 페이지의 컴포넌트 파일에서 직접관리합니다.
 
 따라서 최초 홈 페이지를 정의하고 있는 /app/page.tsx 파일에서 이미지를 추가하는 과정이 필요합니다.
 
-#### page.tsx 구성하기
+### page.tsx 구성하기
 
 - **next/image 컴포넌트 임포트:** 
 next/image 컴포넌트를 사용하면 이미지를 자동으로 최적화하고, 뷰포트에 맞게 크기를 조정할 수 있습니다.
@@ -212,25 +212,25 @@ export default function Page() {
 }
 ```
 
-#### 코드 상세설명
+### 코드 상세설명
 
 - **src** : /public 내 위치한 이미지를 참조합니다.
 - **className="hidden md:block"** : Tailwind CSS 사용하여 데스크탑 화면에서만 이미지가 표시되도록 하고(md:block) 모바일 화면에서는 숨깁니다.(hidden)
 
-#### 브라우저 확인
+### 브라우저 확인
 
 ![img-4.png](img-4.png)
 
-## 페이지와 레이아웃 만들기
+# 페이지와 레이아웃 만들기
 
 next.js의 layout.tsx는 공통 스타일 적용 외에도 특정 페이지 그룹간에 공통된 UI를 공유하는 목적으로 사용될 수 있습니다.
 
-#### page.tsx
+### page.tsx
 
 * **page.tsx 파일**: 특정 경로에 대한 UI를 렌더링하는 React 컴포넌트를 자동으로 구성할 수 있게 해주는 파일입니다.
   예를 들어, /app/page.tsx는 애플리케이션의 홈 페이지(/)에 해당하는 컴포넌트를 정의합니다. 이 파일을 페이지 렌러링을 위한 필수 파일입니다.
 
-### 대시보드 페이지 생성
+## 대시보드 페이지 생성
 
 공통적으로 사용되는 사이드 네비게이션 같은 구성요소를 만들 수 있습니다.
 
@@ -238,7 +238,7 @@ Next.js에서는 파일 시스템 기반 라우팅을 사용하여 애플리케�
 이 방식은 디렉토리와 파일구조를 통해 자동으로 라우트를 생성하고 관리할 수 있게 해주며, 
 개발자가 명시적으로 라우팅 로직을 작성할 필요를 줄여줍니다.
 
-#### 중첩 라우트 생성 방법
+### 중첩 라우트 생성 방법
 
 단순히 디렉토리를 중첩하여 구성하고 각 디렉토리 안에 page.tsx 파일을 추가하면 됩니다.
 
@@ -254,12 +254,12 @@ Next.js에서는 파일 시스템 기반 라우팅을 사용하여 애플리케�
 파일 시스템 기반 라우팅은 URL 경로와 애플리케이션의 파일 구조가 일치하도록 함으로써, 
 명확한 프로젝트 구조를 유지할 수 있도록 합니다.
 
-#### layout.tsx
+### layout.tsx
 
 * **layout.tsx 파일**: 특정 섹션 또는 페이지 그룹에 공통적으로 적용되는 레이아웃을 정의하는데 사용됩니다.
 예를 들어, header 혹은 navigation-bar 와 같은 반복되는 UI를 재사용하기 위해 사용됩니다.
 
-#### 대시보드 레이아웃 구성하기
+### 대시보드 레이아웃 구성하기
 
 대시보드 관련 페이지들에 공통적으로 적용되는 UI를 가진 `/app/ui/dashboard/layout.tsx`를 만들 수 있습니다.
 
@@ -278,30 +278,30 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 }
 ```
 
-#### 대시보드 레이아웃 코드 상세설명
+### 대시보드 레이아웃 코드 상세설명
 
 - **{ children }: { children: React.ReactNode }:** Layout 함수 컴포넌트는 React.ReactNode를 통해 내부 컨텐츠가 무엇인지 알 필요 없이, 다양한 상황에서 해당 레이아웃에 사용될 컨텐츠를 렌더링 할 수 있습니다.
 
-#### 루트 레이아웃과 대시보드 레이아웃의 차이
+### 루트 레이아웃과 대시보드 레이아웃의 차이
 
 루트 레이아웃은 전체 애플리케이션에 공통적인 기본 구조와 스타일을 제공하는 반면, 대시보드와 같은 특정 섹션에 대한 레이아웃은 그 섹션의 고유한 요구 사항에 맞춰 추가적인 UI 구성 요소나 스타일을 제공합니다.
 
-### dashbaord 페이지 브라우저 확인
+## dashbaord 페이지 브라우저 확인
 
 ![img-5.png](img-5.png)
 
-## 페이지 전환
+# 페이지 전환
 
 대시보드를 만들었으니, 대시보드 경로 간에 탐색할 수 있게 하는 링크를 추가할 수 있습니다.
 
 Next.js는 <Link /> 컴포넌트 및 usePathname hook을 통해 이를 구현할 수 있습니다.
 
-### <Link /> 컴포넌트 사용하기
+## <Link /> 컴포넌트 사용하기
 
 기존 페이지간 전환을 위해 HTML에서 `<a>` 태그를 사용했습니다. 
 하지만 Next.js에서는 `<Link />` 컴포넌트를 사용하여 애플리케이션 내의 페이지들 사이에서 탐색을 할 수 있게 합니다. 
 
-#### <Link /> 컴포넌트 적용하기
+### <Link /> 컴포넌트 적용하기
 
 `/app/ui/dashboard/nav-links.tsx` 에서 Link component를 import 한 후 아래와 같이 기존 `<a>` 태그 대신 `<Link>` 태그로 변경합니다.
 
@@ -346,7 +346,7 @@ export default function NavLinks() {
 }
 ```
 
-#### 코드 상세 설명
+### 코드 상세 설명
 
 - 사이드 네비게이션에 표시할 링크들을 정의합니다.
   - name - 링크의 표시 이름
@@ -382,11 +382,11 @@ const links = [
                   }
 ```
 
-#### 페이지 전환 브라우저 확인
+### 페이지 전환 브라우저 확인
 
 ![img-6.png](img-6.png)
 
-#### 자동 코드 분할 및 프리패칭
+### 자동 코드 분할 및 프리패칭
 
 * **자동 코드 분할**
 
@@ -404,16 +404,16 @@ React에서는 사용자가 첯음 사이트를 방문할 때 애플리케이션
 - **페이지 탐색 시 빠른 반응**: <Link> 컴포넌트가 사용될 때, Next.js는 자동으로 해당 링크의 타겟 페이지에 필요한 코드를 백그라운드에서 미리 로드합니다. 사용자가 링크를 클릭하면, 이미 로드된 코드 덕분에 페이지 전환이 빠르게 이루어집니다.
 - **사용자 경험**: 이 기능 덕분에 애플리케이션은 전체 페이지를 새로고침하지 않고도 빠른 페이지 전환을 제공할 수 있습니다.
 
-### usePathname() 훅 사용하여 사용자 위치를 시각적으로 나타내기 
+## usePathname() 훅 사용하여 사용자 위치를 시각적으로 나타내기 
 
 네비게이션에서 사용자에게 현재 위치를 알려주는 UI 패턴 입니다.
 현재 페이지에 해당하는 네비게이션 링크를 다른 링크들과 구별하여 표시할 수 있도록 도와주는 usePathname() 훅을 Next.js에서는 제공합니다.
 
-#### usePathname() 훅
+### usePathname() 훅
 
 usePathname() 훅은 현재 브라우저의 경로(URL)를 반환해 줍니다. 이 값을 사용해 현재 위치와 네비게이션 링크의 경로를 비교함으로써, 사용자가 현재 어느 페이지에 있는지 알 수 있습니다.
 
-#### NavLink 컴포넌트를 클라이언트 컴포넌트로 만들기
+### NavLink 컴포넌트를 클라이언트 컴포넌트로 만들기
 
 usePathName() 훅은 클라이언트 사이드에서만 실행됩니다. 따라서 이 훅을 사용하는 컴포넌트는 서버 사이드 렌더링과정에서는 실행되지 않고 브라우저에서만 실행됩니다.
 
@@ -432,7 +432,7 @@ import { usePathname } from 'next/navigation';
 // ...
 ```
 
-#### 현재 경로 확인 및 활성 링크 스타일 적용하기
+### 현재 경로 확인 및 활성 링크 스타일 적용하기
 
 pathname 변수에 현재 경로 할당하기
 
@@ -487,21 +487,21 @@ export default function NavLinks() {
 }
 ```
 
-#### 브라우저에서 확인하기
+### 브라우저에서 확인하기
 
 이제 경로를 변경하면 왼쪽 네비게이션 패널에 파란색으로 현재 경로의 패널에 시각적으로 표시가 됩니다.
 
 ![img-7.png](img-7.png)
 
-## 데이터베이스
+# 데이터베이스
 
 Next.js 대시보드 를 구성하는데 사용될 PostgreSQL을 설정합니다.
 
-### github repository 만들기
+## github repository 만들기
 
 현재까지 구성한 내용을 git repository에 push 합니다.
 
-### Vercel Account 만들기
+## Vercel Account 만들기
 
 [vercel](https://vercel.com/new/)
 
@@ -513,7 +513,7 @@ Next.js 대시보드 를 구성하는데 사용될 PostgreSQL을 설정합니다
 
 ![img-9.png](img-9.png)
 
-### PostgreSQL 데이터베이스 설정하기 with Vercel
+## PostgreSQL 데이터베이스 설정하기 with Vercel
 
 1. Vercel 프로젝트 대시보드에서 Storage 탭을 선택합니다.
 2. 사용가능한 저장 옵션 중에서 Postgres를 선택하고 데이터베이스를 생성합니다.
@@ -523,7 +523,7 @@ Next.js 대시보드 를 구성하는데 사용될 PostgreSQL을 설정합니다
 
 ![img-10.png](img-10.png)
 
-### 데이터 베이스 연결정보 확인
+## 데이터 베이스 연결정보 확인
 
 1. `.env.local` 탭 : 연결된 PostgreSQL 데이터베이스를 선택하여 .env.local 탭을 찾아 생성된 연결 정보를 확인합니다.
 
@@ -533,7 +533,7 @@ Next.js 대시보드 를 구성하는데 사용될 PostgreSQL을 설정합니다
 
 3. npm i @vercel/postgres 명령어를 실행하여 라이브러리를 설치합니다.
 
-### 데이터 베이스 seeding
+## 데이터 베이스 seeding
 
 프로젝트의 `/scripts` 폴더 내에 `seed.js`파일이 있습니다. 해당 파일을 이용하여 생성한 데이터 베이스에 초기 데이터를 넣을 수 있습니다.
 
@@ -551,11 +551,11 @@ Next.js 대시보드 를 구성하는데 사용될 PostgreSQL을 설정합니다
 
 이후 `npm run seed` 를 실행합니다.
 
-## 데이터베이스 데이터를 이용하여 대시보드 구성하기
+# 데이터베이스 데이터를 이용하여 대시보드 구성하기
 
 서버 컴포넌트를 통해 백엔드 리소스에 접근하여 데이터를 가져와 대시보드 개요 페이지를 구축할 수 있습니다.
 
-### 서버 컴포넌트를 사용하여 데이터를 가져오기
+## 서버 컴포넌트를 사용하여 데이터를 가져오기
 
 `/app/dashboard/page.tsx` 재 구성하기
 
@@ -590,7 +590,7 @@ export default async function Page() {
 }
 ```
 
-### dashboard/page.tsx 코드 상세 내용
+## dashboard/page.tsx 코드 상세 내용
 
 - **비동기 컴포넌트를 사용한 데이터 가져오기**
 
@@ -608,7 +608,7 @@ export default async function Page() {
 
 ```
 
-### Fetching data for <RevenueChart/>
+## Fetching data for <RevenueChart/>
 
 1. 데이터 페칭 함수를 import 합니다.
 2. <RevenueChart/> 컴포넌트 관련 주석을 해제하고 활성화 합니다.
@@ -632,7 +632,7 @@ export default async function Page() {
 
 ![imt-12.png](imt-12.png)
 
-### 8.4 Fetching data for <LatestInvoices/>
+## 8.4 Fetching data for <LatestInvoices/>
 
 1. fetchLatestInvoices 호출
 2. dashboard/page.tsx에서 fetchLatestInvoices 와 관련된 컴포넌트 주석 해제
@@ -657,15 +657,15 @@ export default async function Page() {
 
 ![img-13.png](img-13.png)
 
-### Fetch data for the <Card> components
+## Fetch data for the <Card> components
 
 브라우저에서 확인하기
 
 ![img-14.png](img-14.png)
 
-### 데이터 관리법
+## 데이터 관리법
 
-#### Request Waterfalls
+### Request Waterfalls
 
 waterfall 방식은 이전 요청이 끝날때까지 기다리는 순차적인 방식을 의미합니다.
 데이터 페칭의 경우, 각 요청은 이전 요청이 데이터를 반환할 때까지 시작할 수 없습니다.
@@ -685,7 +685,7 @@ const {
 } = await fetchCardData(); // fetchLatestInvoices()가 완료될 때까지 대기
 ```
 
-#### Parallel data fetching
+### Parallel data fetching
 
 waterfalls 방식 대신 성능을 개선하기 위해 병렬 데이터 페칭을 사용하여 데이터 요청을 동시에 진행해 애플리케이션 로딩 시간을 단축할 수 있습니다.
 
@@ -714,9 +714,9 @@ export async function fetchCardData() {
 }
 ```
 
-## 정적 및 동적 대시보드 구현하기
+# 정적 및 동적 대시보드 구현하기
 
-### 정적 렌더링 
+## 정적 렌더링 
 
 정적 렌더링은 데이터 페칭과 렌더링이 서버에서 배포시에 이루어집니다. 배포된 결과는 CDN에서 배포및 캐싱될 수 있습니다.
 
@@ -725,7 +725,7 @@ export async function fetchCardData() {
   - 서버 부하 감소 : 콘텐츠가 캐시되기 때문에 서버는 각 사용자 요청에 동적으로 콘텐츠를 생성할 필요가 없습니다.
   - SEO 최적화 : 사전 렌더링된 콘텐츠는 검색 엔진 크롤러가 색인을 생성하기 쉽워 검색 엔진을 향상시킬 수 있습니다.
 
-### 동적 렌더링
+## 동적 렌더링
 
 동적 렌더링은 콘텐츠가 사용자가 페이지를 방문할 때마다 서버에서 렌더링 됩니다.
 
@@ -734,7 +734,7 @@ export async function fetchCardData() {
   - 사용자별 콘텐츠: 개인화된 콘텐츠, 예를 들어 대시보드나 사용자 프로필을 쉽게 제공하고 사용자 상호작용에 따라 데이터를 업데이트할 수 있습니다.
   - 요청 시점 정보: 요청 시점에만 알 수 있는 정보(예: 쿠키 또는 URL 검색 파라미터)에 접근할 수 있습니다.
 
-### 대시보드 동적으로 만들기
+## 대시보드 동적으로 만들기
 
 next js는 `unstable_noStore` 라는 API를 제공하여 동적데이터를 필요로 하는 컴포넌트나 데이터 패칭 함수에서
 데이터가 캐싱되지 않도록 설정할 수 있습니다.
@@ -788,9 +788,9 @@ export async function fetchInvoiceById(query: string) {
 }
 ```
 
-### 지연되는 데이터 페칭 대응하기
+## 지연되는 데이터 페칭 대응하기
 
-#### 스트리밍
+### 스트리밍
 
 스트리밍은 데이터를 서버에서 클라이언트로 준비되는 대로 전송하는 데이터 전송 기술입니다.
 
@@ -808,7 +808,7 @@ export async function fetchInvoiceById(query: string) {
 2. 특정 컴포넌트에 `<Suspense>` 를 사용합니다.
    - 컴포넌트들의 로딩 상태를 처리합니다. 특정 컴포넌트가 데이터를 로드하는 동안 대체 컨텐츠를 표시할 수 있습니다.
 
-#### 9.4.2 실제 구현
+### 실제 구현
 
 * **loading.tsx**
 
@@ -844,7 +844,7 @@ export default function Loading() {
 
 ![img-16.png](img-16.png)
 
-#### 9.4.3 route group
+### route group
 
 * **스켈레톤 컴포넌트 버그 수정하기**
 
@@ -865,7 +865,7 @@ URL 경로 구조에 영향을 주지 않고 파일을 조직할 수 있습니�
 
 라우트 그룹을 통해 애플리케이션을 관리하기 쉬운 구조로 조직화 할 수 있습니다.
 
-#### 9.4.4 <Suspense> 를 사용해 특정 컴포넌트 스트리밍 하기
+### <Suspense> 를 사용해 특정 컴포넌트 스트리밍 하기
 
 <Suspense> 를 사용하면 특정 조건이 충족될 때 까지 애플리케이션의 일부를 지연시킬 수 있습니다.
 이를 통해 동적 컴포넌트를 Suspense로 감싼 다음, 동적 컴포넌트가 로드되는 동안 표시할 대체 컴포넌트를 전달 할 수 있습니다.
@@ -951,7 +951,7 @@ export default async function RevenueChart() { // Make component async, remove t
 
 ![img-18.png](img-18.png)
 
-#### 9.4.5 컴포넌트 그룹화
+### 컴포넌트 그룹화
 
 <Card> 컴포넌트들을 Suspense로 래핑하는 작업을 진행하겠습니다.
 
@@ -1016,7 +1016,7 @@ export default async function CardWrapper() {
 이 방식을 적용하고 페이지를 새로고침하면, 모든 카드가 동시에 로드되는 것을 확인 할 수 있습니다.
 routing group을 통해 여러 컴포넌트를 동시에 로드할 수 있습니다.
 
-#### 9.4.5 <Suspense> 사용 전략
+### <Suspense> 사용 전략
 
 **배치 시 고려할 사항**
 
@@ -1028,7 +1028,7 @@ routing group을 통해 여러 컴포넌트를 동시에 로드할 수 있습니
 방법 2. 모든 컴포넌트를 개별적으로 스트리밍 할 수 있지만 준비되는 대로 UI가 표시되어 시각적으로 불편할 수 있다.
 방법 3. 래퍼 컴포넌트를 통해 그룹별 스트리밍 할 수 있다.
 
-## 10 . Search and Pagination
+# Search and Pagination
 
 /invoices page에서 serch 와 pagination 기능을 추가해볼 수 있습니다.
 
@@ -1073,7 +1073,7 @@ export default async function Page() {
 사용자가 클라이언트에서 인보이스를 검색할 때 URL 파라미터가 업데이트되고, 
 데이터는 서버에서 패치되며, 새로운 데이터로 테이블이 서버에서 다시 렌더링됩니다.
 
-### 10.1 URL 검색 파라미터
+## URL 검색 파라미터
 
 Next.js에서는 클라이언트 측 상태에 검색 상태를 관리하는게 아닌 URL 검색 파라미터를 사용합니다.
 
@@ -1085,7 +1085,7 @@ Next.js에서는 클라이언트 측 상태에 검색 상태를 관리하는게 
 
 **분석 및 추적** - 검색 쿼리와 필터가 URL에 포함되어 있기 때문에, 클라이언트 로직 없이 사용자의 행동을 추적할 수 있습니다.
 
-### 10.2 검색 기능 추가하기
+## 검색 기능 추가하기
 
 Next.js 의 클라이언트 훅을 사용하여 검색 기능을 구현할 수 있습니다.
 
@@ -1102,7 +1102,7 @@ Next.js 의 클라이언트 훅을 사용하여 검색 기능을 구현할 수 �
 3. 입력 필드와 URL 동기화 유지
 4. 검색 쿼리를 반영하여 테이블 업데이트
 
-#### 10.2.1 사용자 입력 확인
+### 사용자 입력 확인
 
 `/app/ui/search.tsx`
 
@@ -1251,7 +1251,7 @@ export default function Search() {
 이 구현을 통해, 검색 기능이 URL에 반영되게 됩니다.
 또한, Next.js의 클라이언트 측 네비게이션을 활용하여 페이지를 새로고침하지 않고도 URL을 업데이트할 수 있습니다.
 
-#### 10.2.3 URL과 입력 필드 동기화 하기
+### URL과 입력 필드 동기화 하기
 
 사용자가 애플리케이션 내에서 검색을 수행할 때, 그 검색 상태를 URL에 반영하여 해당 상태를 공유할 수 있도록 합니다. 이는 공유 받은 사람들도 검색 쿼리가 URL에 반영되기 때문에 같은 검색 결과를 볼 수 있게 됩니다.
 
@@ -1291,7 +1291,7 @@ defaultValue={searchParams.get('query')?.toString()}
 
 이 접근 방식의 장점은 사용자가 특정 검색어로 페이지에 접근했을 때 (예: /search?query=example), 해당 검색어(example)가 입력 필드에 자동으로 채워져서 표시되도록 할 수 있다는 점입니다.
 
-#### 10.2.4 테이블 컴포넌트 업데이트 하기
+### 테이블 컴포넌트 업데이트 하기
 
 사용자의 컴색 쿼리에 따라 테이블 컴포넌트를 업데이트 할 수 있습니다.
 
@@ -1362,7 +1362,7 @@ export default async function InvoicesTable({
 
 클라이언트에서 파라미터를 읽어야 할 때는 useSearchParams() 훅을 사용하고, 서버에서 처리할 때는 prop을 통해 필요한 파라미터를 컴포넌트로 전달하는 것이 좋습니다.
 
-### 10.3 debouncing
+## debouncing
 
 디바운싱은 함수가 실행될 수 있는 비율을 제한하는 관행입니다. 이를 통해 사용자가 타이핑을 멈췄을 때만 데이터베이스를 쿼리할 수 있도록 설정할 수 있습니다.
 
@@ -1399,7 +1399,7 @@ const handleSearch = useDebouncedCallback((term) => {
 
 사용자가 타이핑을 멈춘 후 300ms 가 지난 후에 코드가 실행될 수 있도록 합니다.
 
-### 10.4 Pagination
+## Pagination
 
 사용자가 페이지를 넘겨가며 모든 결과 쿼리를 확인할 수 있습니다.
 
