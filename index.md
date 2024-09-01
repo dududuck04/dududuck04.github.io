@@ -22,21 +22,21 @@ background: /assets/images/background.jpeg
 
 ### LANGUAGE
 Python: ★★★★★
-Serverless Application & bash script implementation
+ - Serverless Application & bash script implementation
 
 Java: ★★★★☆
-Backend API Server implementation
+ - Backend API Server implementation
 
 JavaScript/TypeScript: ★★★★☆
-Next.js , React (novice level)
-Backend API Server implementation (advanced)
+ - Next.js , React (novice level)
+ - Backend API Server implementation (advanced)
 
 IaC: ★★★★☆
-AWS Resource Module Architecture with AWS CDK Tool
-Deployment of AWS Resource with Terraform Tool
+ - AWS Resource Module Architecture with AWS CDK Tool
+ - Deployment of AWS Resource with Terraform Tool
 
 English: ★★★★☆
-Corporation Global Tech Meeting Live Translator 2024
+ - Corporation Global Tech Meeting Live Translator 2024
 
 ### COMMENT
 - Highly-motivated and passionate DevOps Engineer interested in diverse implementation of the latest technology solution
