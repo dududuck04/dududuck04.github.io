@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 1-3 Teams 배포 승인 메세지
-nav_order: 3
-permalink: docs/02_Tech/03_CICD/Jenkins/jenkins-notification-teams
-parent: 03_CICD
-grand_parent: Tech
+title: Teams 승인 메세지
+nav_order: 4
+permalink: docs/03_CICD/Jenkins/jenkins-notification-teams/jenkins-teams
+parent: Jenkins
+grand_parent: CICD
 ---
 
 # Microsoft Teams에 Jenkins Pipeline 배포 알림 및 승인 메세지 전송하기
@@ -39,9 +39,9 @@ AWS Lambda에서 Node.js 20x를 사용하여 Teams 채널로 메시지를 보내
 
 참고 문헌 : [Create Incoming Webhooks](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=newteams%2Cdotnet#key-features-of-incoming-webhooks)
 
-## 1. Teams 설정
+# Teams 설정
 
-### 1.1 Incoming webhooks 생성
+## Incoming webhooks 생성
 
 Teams 채널에 콘텐츠를 공유할 수 있게 하기 위해 Incoming Webhooks를 생성합니다. 이 기능을 활용해 Jenkins로부터의 배포 알림 및 승인 요청을 Teams 채널로 직접 보낼 수 있습니다.
 
@@ -71,7 +71,7 @@ Teams 채널에 콘텐츠를 공유할 수 있게 하기 위해 Incoming Webhook
 
 ![img-7.png](img-7.png)
 
-### 1.2 Incoming Webhooks 이용 방법
+## Incoming Webhooks 이용 방법
 
 Incoming Webhooks를 통해 Teams 채널에 다음 기능을 포함한 메시지를 보낼 수 있습니다.
 
@@ -85,11 +85,11 @@ Incoming Webhooks를 통해 Teams 채널에 다음 기능을 포함한 메시지
 
 * **리소스 정의 형식**: 메시지는 JSON 형식으로 전송됩니다.
 
-## 2. Lambda 설정
+# Lambda 설정
 
 AWS Lambda를 사용하여 Adaptive Card를 활용한 메시지를 Teams 채널로 보내는 함수를 구성합니다. 이 Lambda 함수는 Jenkins로부터 호출되어, Teams에 메시지를 전송하는 역할을 합니다.
 
-## 2.1 Lambda 함수 코드
+# Lambda 함수 코드
 
 아래 코드는 Node.js 20x를 사용한 Lambda함수입니다. 
 
@@ -252,16 +252,16 @@ export const handler = async (event) => {
 };
 ```
 
-## 2.2 Lambda 함수 상세 설명
+# Lambda 함수 상세 설명
 
-### 2.2.1 이벤트 데이터 처리
+## 이벤트 데이터 처리
 Lambda 함수는 Jenkins로부터 전달받은 custom event 객체에서 변수를 선언하면서, 필요한 정보를 추출합니다. custom event 객체에는 젠킨슨에서 배포와 관련된 상세 정보를 제공합니다. custom event 객체는 젠킨슨 파이프라인 단계에서 정의할 수 있습니다.
 
 ```javascript
 const { jobName, jenkinsUrl, buildNumber, startTime, deployExecutor, gitRevision, environment, gitTagName } = event;
 ```
 
-### 2.2.2 메시지 제목 생성
+## 메시지 제목 생성
 메시지의 제목은 Jenkins 작업 이름(jobName)에서 결정됩니다. 단순하게 문자열로 정의하셔도 무방합니다.
 
 ```javascript
@@ -269,7 +269,7 @@ let messageTitle = jobName.substring(jobName.lastIndexOf("-") + 1).charAt(0).toU
 messageTitle = `${messageTitle} API - Jenkins 배포 승인 알림 메세지`;
 ```
 
-### 2.2.3 Teams 메시지 페이로드 구성
+## Teams 메시지 페이로드 구성
 배포 정보와 승인 페이지 링크를 포함하는 Adaptive Card 형식의 메시지를 구성합니다.
 
 ```javascript
@@ -319,7 +319,7 @@ const teamsPayload = JSON.stringify({
 });
 ```
 
-### 2.2.4 메세지 전송
+## 메세지 전송
 구성된 메세지를 Teams Incoming Webhooks URL로 전송합니다. HTTPS POST 요청을 사용하며, 요청 성공 여부에 따라 응답코드를 반환합니다.
 
 ```javascript
@@ -350,7 +350,7 @@ const sendMessageToTeams = () => {
 ```
  
 
-### 2.2.5 응답 처리
+## 응답 처리
 메시지 전송 성공 시 "Message sent to Teams successfully"와 상태 코드 200을 반환합니다. 오류 발생 시 오류 메시지와 상태 코드 500을 반환합니다.
 
 ```javascript
@@ -370,13 +370,13 @@ try {
 }
 ```
 
-## 3. Jenkins 구성
+# Jenkins 구성
 
 Jenkins에서는 배포 알림 메세지를 Teams로 보내기 위해 **Office 365 Connector** 플러그인을 사용할 수도 있고 **Lambda**를 이용해 커스텀한 메세지를 보낼 수 있습니다.
 
-### 3.1 플러그인을 활용하여 파이프라인 알림 메세지 보내기
+## 플러그인을 활용하여 파이프라인 알림 메세지 보내기
 
-#### 3.1.1 Office 365 Connector Plugin 설치하기
+### Office 365 Connector Plugin 설치하기
 
 **메세지를 보낼 스테이지를 구성하기 위한 젠킨슨 잡을 생성합니다. 본 블로그는 pipeline project로 구성하였습니다.**
 
@@ -390,7 +390,7 @@ Jenkins에서는 배포 알림 메세지를 Teams로 보내기 위해 **Office 3
 
 ![img-10.png](img-10.png)
 
-#### 3.1.2 Office 365 Connector 구성하기
+### Office 365 Connector 구성하기
 
 **1. Notification webhooks 를 구성합니다.**
 * URL - Teams channel 에서 발급받은 Incomming Webhook Url을 넣어줍니다.
@@ -420,11 +420,11 @@ Build status 설명
 
 ![img-15.png](img-15.png)
 
-### 3.2 람다를 통해 커스텀 알림 메세지 구성하기
+## 람다를 통해 커스텀 알림 메세지 구성하기
 
 Jenkins 파이프라인에서 커스텀 알림 메시지를 보낼 람다를 호출하는 스크립트를 작성하여 배포 승인 요청을 포함한 다양한 정보를 Teams 채널로 전송할 수 있습니다.
 
-#### 3.2.1 Teams 젠킨슨 파이프라인 파일을 만들어 줍니다.
+### Teams 젠킨슨 파이프라인 파일을 만들어 줍니다.
 ```groovy
     stage('Invoke Teams Approval') {
     script {
@@ -459,15 +459,15 @@ Jenkins 파이프라인에서 커스텀 알림 메시지를 보낼 람다를 호
 }
 ```
 
-#### 3.2.2 Teams 젠킨슨 파이프라인 코드 상세 설명
+## Teams 젠킨슨 파이프라인 코드 상세 설명
 
-##### 3.2.2.1 Git Commit ID 추출
+### Git Commit ID 추출
 
 ```groovy
 GIT_COMMIT_ID = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
 echo "Git Commit ID => [${GIT_COMMIT_ID}]"
 ```
-##### 3.2.2.2 사용자 정보 추출
+### 사용자 정보 추출
 
 BuildUser 래퍼를 사용하여 현재 Jenkins 빌드를 트리거한 사용자의 ID를 가져옵니다.
 
@@ -478,7 +478,7 @@ wrap([$class: 'BuildUser']) {
 }
 ```
 
-##### 3.2.2.3 AWS Lambda 함수 호출
+### AWS Lambda 함수 호출
 
 참고자료 : [AWS Lamabda Plugin](https://www.jenkins.io/doc/pipeline/steps/aws-lambda/)
 
@@ -503,7 +503,7 @@ synchronous 옵션을 통해 Lambda 함수를 동기식으로 호출합니다. L
             }
 ```
 
-##### 3.2.2.4 사용자 입력 요청
+### 사용자 입력 요청
 
 참고자료 : [Pipeline:Input Step](https://www.jenkins.io/doc/pipeline/steps/pipeline-input-step/)
 
