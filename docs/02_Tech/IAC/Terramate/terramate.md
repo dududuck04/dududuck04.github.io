@@ -2,7 +2,7 @@
 layout: default
 title: 2. Terramate
 nav_order: 20
-permalink: docs/02_Tech/CICD/Terramate
+permalink: docs/02_Tech/03_CICD/Terramate
 parent: 02_AWS
 grand_parent: Tech
 ---

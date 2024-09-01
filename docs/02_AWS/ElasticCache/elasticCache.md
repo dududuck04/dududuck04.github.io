@@ -2,7 +2,7 @@
 layout: default
 title: Elastic Cache
 nav_order: 50
-permalink: docs/02_AWS/ElasticCache
+permalink: docs/02_AWS/ElasticCache/elasticCache
 parent: AWS
 ---
 
