@@ -3,8 +3,7 @@ layout: default
 title: Terramate
 nav_order: 1
 permalink: docs/04_IAC/Terramate/terramate
-parent: Terramate
-grand_parent: IAC
+parent: IAC
 ---
 
 # Terramate 
