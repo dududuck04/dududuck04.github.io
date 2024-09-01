@@ -2,8 +2,8 @@
 layout: default
 title: 5. Elastic Cache
 nav_order: 50
-permalink: docs/02_Tech/AWS/ElasticCache
-parent: AWS
+permalink: docs/02_Tech/02_AWS/ElasticCache
+parent: 02_AWS
 grand_parent: Tech
 ---
 

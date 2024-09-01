@@ -111,7 +111,7 @@ jobs:
     steps:
       - checkout
       #      - run:
-      #          name: Installing AWS CLI
+      #          name: Installing 02_AWS CLI
       #          command: |
       #            sudo apt-get update
       #            sudo apt install python3-pip
@@ -122,7 +122,7 @@ jobs:
           paths:
             - .
 
-  # Deploying the code to AWS S3 Bucket
+  # Deploying the code to 02_AWS S3 Bucket
   deploy:
     # working_directory: ~/repo
     machine:
@@ -138,7 +138,7 @@ jobs:
             echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
             echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
       - run:
-          name: Configuring AWS
+          name: Configuring 02_AWS
           command: |
             aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
@@ -218,7 +218,7 @@ workflows:
           at: .
       - checkout
       - run: 
-          name: Configuring AWS
+          name: Configuring 02_AWS
           command: |
             if [ $CIRCLE_BRANCH = 'master' ]; then
               aws s3 sync ./app/build s3://kkm-s3/
@@ -327,7 +327,7 @@ jobs:
           paths:
             - .
 
-  # Deploying the code to AWS S3 Bucket
+  # Deploying the code to 02_AWS S3 Bucket
   deploy:
     # working_directory: ~/repo
     machine:
@@ -343,7 +343,7 @@ jobs:
           aws_secret_access_key: AWS_SECRET_ACCESS_KEY
           region: ap-northeast-2
       - run:
-          name: Check AWS Configuration
+          name: Check 02_AWS Configuration
           command: |
             aws configure list
             aws sts get-caller-identity

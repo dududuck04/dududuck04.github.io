@@ -3,7 +3,7 @@ layout: default
 title: 2. SAM
 nav_order: 20
 permalink: docs/02_Tech/CICD/SAM
-parent: AWS
+parent: 02_AWS
 grand_parent: Tech
 ---
 

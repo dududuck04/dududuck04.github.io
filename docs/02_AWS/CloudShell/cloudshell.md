@@ -2,8 +2,8 @@
 layout: default
 title: 3. CloudShell
 nav_order: 30
-permalink: docs/02_Tech/AWS/CloudShell
-parent: AWS
+permalink: docs/02_Tech/02_AWS/CloudShell
+parent: 02_AWS
 grand_parent: Tech
 ---
 

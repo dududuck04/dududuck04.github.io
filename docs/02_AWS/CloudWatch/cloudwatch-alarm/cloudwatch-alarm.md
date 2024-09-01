@@ -2,8 +2,8 @@
 layout: default
 title: 1. Cloud Watch Alarm
 nav_order: 10
-permalink: docs/02_Tech/AWS/CloudWatch/cloudwatch-alarm
-parent: AWS
+permalink: docs/02_Tech/02_AWS/CloudWatch/cloudwatch-alarm
+parent: 02_AWS
 grand_parent: Tech
 ---
 

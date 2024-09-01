@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 1-1. AWS EC2에서 Docker를 사용하여 Jenkins 배포하기
+title: 1-1. 02_AWS EC2에서 Docker를 사용하여 Jenkins 배포하기
 nav_order: 1
 permalink: docs/02_Tech/CICD/Jenkins/jenkins-installation
 parent: CICD

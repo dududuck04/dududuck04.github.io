@@ -1,13 +1,12 @@
 ---
 layout: default
-title: IAC
-nav_order: 5
+title: AWS
+nav_order: 20
 has_children: true
-permalink: docs/02_Tech/IAC
-parent: Tech
+permalink: docs/02_AWS
 ---
 
-# Color Utilities
+# AWS
 {: .no_toc }
 
 ## Table of contents
@@ -15,5 +14,3 @@ parent: Tech
 
 1. TOC
 {:toc}
-
----

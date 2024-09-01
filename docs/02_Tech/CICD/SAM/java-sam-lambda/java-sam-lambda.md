@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 2-1. AWS SAM을 이용해 Lambda로 JAVA 어플리케이션 배포하기
+title: 2-1. 02_AWS SAM을 이용해 Lambda로 JAVA 어플리케이션 배포하기
 nav_order: 21
 permalink: docs/02_Tech/CICD/SAM/java-sam-lambda
 parent: CICD
@@ -166,8 +166,8 @@ AWS SAM은 Java 언어를 사용할 때 Maven이나 Gradle과 같은 표준 Java
 
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Description: A simple AWS Lambda application using Java with a Layer.
+Transform: 02_AWS::Serverless-2016-10-31
+Description: A simple 02_AWS Lambda application using Java with a Layer.
 
 Globals:
   Function:
@@ -184,7 +184,7 @@ Parameters:
 
 Resources:
   JavaFunction:
-    Type: AWS::Serverless::Function
+    Type: 02_AWS::Serverless::Function
     Properties:
       FunctionName: !Ref LambdaFunctionName
       Handler: example.Handler::handleRequest
@@ -198,7 +198,7 @@ Resources:
       BuildMethod: makefile
 
   JavaLayer:
-    Type: AWS::Serverless::LayerVersion
+    Type: 02_AWS::Serverless::LayerVersion
     Properties:
       LayerName: "java-dependencies"
       Description: "Java libraries required for the lambda function"

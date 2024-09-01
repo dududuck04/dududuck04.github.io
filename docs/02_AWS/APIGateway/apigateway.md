@@ -1,13 +1,12 @@
 ---
 layout: default
-title: AWS
+title: API Gateway
 nav_order: 10
-has_children: true
-permalink: docs/02_Tech/AWS
-parent: Tech
+permalink: docs/02_AWS/APIGateway
+parent: 02_AWS
 ---
 
-# AWS
+# API Gatewayy
 {: .no_toc }
 
 ## Table of contents

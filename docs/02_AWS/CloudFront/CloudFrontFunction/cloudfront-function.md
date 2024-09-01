@@ -2,8 +2,8 @@
 layout: default
 title: 1. CloudFront Function vs Lambda@Edge 비교
 nav_order: 10
-permalink: docs/02_Tech/AWS/CloudFrontFunction
-parent: AWS
+permalink: docs/02_Tech/02_AWS/CloudFrontFunction
+parent: 02_AWS
 grand_parent: Tech
 ---
 

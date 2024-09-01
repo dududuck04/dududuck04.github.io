@@ -2,8 +2,8 @@
 layout: default
 title: 2. Amazon CloudFront
 nav_order: 20
-permalink: docs/02_Tech/AWS/CloudFront
-parent: AWS
+permalink: docs/02_Tech/02_AWS/CloudFront
+parent: 02_AWS
 grand_parent: Tech
 ---
 
