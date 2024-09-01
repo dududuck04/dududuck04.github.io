@@ -10,7 +10,7 @@ grand_parent: AWS
 # AWS S3, Lambda, API Gateway를 활용한 실시간 이미지 리사이징 솔루션
 {: .no_toc }
 
-## 목차
+## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC

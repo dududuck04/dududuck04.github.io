@@ -10,7 +10,7 @@ parent: AWS
 # CloudFront
 {: .no_toc }
 
-## 목차
+## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
