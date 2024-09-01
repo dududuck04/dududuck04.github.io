@@ -1464,10 +1464,12 @@ export default async function Page({
 }
 ```
 
-pagination component 구현
+**pagination component 구현**
 
 `<Pagination/>` 컴포넌트는 클라이언트 컴포넌트로, 현재 페이지와 총 페이지 수를 기반으로 페이지네이션을 구현합니다.
+
 새 페이지 번호를 설정하기 위해 `URLSearchParams`를 사용하고, `pathname`을 사용하여 URL 문자열을 생성합니다.
+
 ```typescript jsx
 'use client';
  
@@ -1487,7 +1489,9 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 ```
 
 페이지 번호 리셋 
+
 `<Search>` 컴포넌트의 handleSearch 함수를 업데이트 합니다.
+
 ```typescript jsx
 'use client';
 import { useDebouncedCallback } from 'use-debounce';
