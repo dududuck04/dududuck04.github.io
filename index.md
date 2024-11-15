@@ -9,38 +9,13 @@ background: /assets/images/background.jpeg
   <img src="{{ page.background | prepend: site.baseurl }}" alt="Header Image" style="width: 100%; height: auto;">
 </header>
 
-### PROFESSIONAL SUMMARY
-- Experienced DevOps engineer with demonstrated success in cost-effective migration of existing services  to cloud environment, designing and deploying application in DevSecOps environment.
-- Knowledge of full stack development and modular design with IaC Tool.
-- Adept in developing platform software to improve and automate work environment.
+### Blog Contents
 
-### CORE QUALIFICATIONS
-- Pipeline Architecture ( Jenkins , Code Pipeline , CircleCi , Github Action )
-- Advanced API Architecture ( Lambda , API Gateway , CloudFront )
-- AWS Resource Architecture with IaC ( Terraform , AWS CDK ) 
-- Security System Tool ( Trivy , Grype , Cosign , SBOM , Kubescape )
-
-### LANGUAGE
-Python: ★★★★★
- - Serverless Application & bash script implementation
-
-Java: ★★★★☆
- - Backend API Server implementation
-
-JavaScript/TypeScript: ★★★★☆
- - Next.js , React (novice level)
- - Backend API Server implementation (advanced)
-
-IaC: ★★★★☆
- - AWS Resource Module Architecture with AWS CDK Tool
- - Deployment of AWS Resource with Terraform Tool
-
-English: ★★★★☆
- - Proficient knowledge of technical jargon
- - Business english (primary fluency)
-
-### COMMENT
-- Highly-motivated and passionate DevOps Engineer interested in diverse implementation of the latest technology solution
+[01_Languages](docs/01_Languages)
+[02_AWS](docs/02_AWS)
+[03_CICD](docs/03_CICD)
+[04_IAC](docs/04_IAC)
+[05_Project](docs/05_Project)
 
 ### CONTACT
 - dududuck04@gmail.com
